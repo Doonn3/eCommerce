@@ -1,0 +1,46 @@
+{
+  "extends": [
+    "@tsconfig/node18/tsconfig.json",
+    "@vue/tsconfig/tsconfig.json"
+  ],
+  "files": [],
+    "include": [
+      "env.d.ts", 
+      "src/**/*.ts", 
+      "src/**/*.vue",
+      "vite.config.*"
+    ],
+    "compilerOptions": {
+      "composite": true,
+      "module": "ESNext",
+      "moduleResolution": "Node",
+      "resolveJsonModule": true,
+      "verbatimModuleSyntax": false,
+      "lib": ["ES2016", "DOM", "DOM.Iterable"],
+      "types": [
+        "vite/client", 
+        "@storybook/vue3", 
+        "@storybook/vue3-vite",
+        "node"
+      ],
+      "strict": true,
+      "noImplicitAny": true,
+      "noImplicitThis": true,
+      "alwaysStrict": true,
+      "plugins": [
+        {
+          "name": "@vuedx/typescript-plugin-vue" 
+        }
+      ],
+      "rootDir": ".",
+      "baseUrl": "src",
+      "paths": {
+          "@app/*": ["app/*"],
+          "@pages/*": ["pages/*"],
+          "@widgets/*": ["widgets/*"],
+          "@features/*": ["features/*"],
+          "@entities/*": ["entities/*"],
+          "@shared/*": ["shared/*"]
+      }
+    }
+}

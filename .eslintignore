@@ -1,0 +1,4 @@
+.storybook
+vite.config.ts
+tailwind.config.ts
+env.d.ts
