@@ -3,7 +3,7 @@ import { signUpCustomer } from '../customersApi';
 import ErrorToken from '../models/ErrorToken';
 
 import { CustomerDraft, CustomerSignInType, TokenType } from '../types/Types';
-import localStorageService from '../../../libs/services/LocalStorageService';
+import localStorageService from '../../../lib/services/LocalStorageService';
 import ErrorCredentials from '../models/ErrorCredentials';
 import Token from '../models/Token';
 

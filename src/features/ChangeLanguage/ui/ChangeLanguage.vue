@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { OnClickOutside } from '@vueuse/components';
 import { useAppState } from '@shared/State/AppState';
-import { useSwitch } from '@shared/libs/hooks';
+import { useSwitch } from '@shared/lib/hooks';
 import { SubMenu } from '@shared/ui-kit/Navigation';
 
 const appState = useAppState();
