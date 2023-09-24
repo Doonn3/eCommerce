@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { computed, reactive } from 'vue';
 import localStorageService from '@shared/lib/services/LocalStorageService';
-import { CurrencyCodeType, LangType, StateType } from '../common/StateType';
+import type { CurrencyCodeType, LangType, StateType } from '../common/StateType';
 import { KEY_LOCAL_STORAGE, NAME_SPACE } from '../common/consts';
 import { useTheme } from '../hooks/useTheme';
 
