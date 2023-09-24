@@ -1,12 +1,10 @@
 {
-  "extends": [
-    "@tsconfig/node18/tsconfig.json",
-    "@vue/tsconfig/tsconfig.json"
-  ],
+  "extends": "@vue/tsconfig/tsconfig.json",
   "files": [],
     "include": [
       "env.d.ts", 
       "src/**/*.ts", 
+      "src/**/*.stories.ts", 
       "src/**/*.vue",
       "vite.config.*"
     ],
@@ -27,6 +25,9 @@
       "noImplicitAny": true,
       "noImplicitThis": true,
       "alwaysStrict": true,
+      "noFallthroughCasesInSwitch": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
       "plugins": [
         {
           "name": "@vuedx/typescript-plugin-vue" 
