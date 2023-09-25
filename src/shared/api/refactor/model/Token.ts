@@ -13,6 +13,10 @@ export class Token {
     return this.data;
   }
 
+  public set Data(_data: TokenType) {
+    this.data = _data;
+  }
+
   constructor(type: TokenType) {
     this.data = type;
   }

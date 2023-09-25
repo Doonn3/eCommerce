@@ -5,30 +5,36 @@ import { Token } from '../../../api/refactor/model/Token';
 
 type StatusType = {
   status: 'error' | 'success' | 'init';
+  statusCode: number;
   messsage: string;
   result?: Token;
 };
 
-export async function useClientFlow() {
-  const status = ref<StatusType>({ status: 'init', messsage: '' });
+export function useClientFlow() {
+  const status = ref<StatusType>({ status: 'init', messsage: '', statusCode: 0 });
 
-  const clientFlowToken = await fetchClientFlowToken();
+  const flowToken = async () => {
+    const clientFlowToken = await fetchClientFlowToken();
 
-  if (clientFlowToken instanceof Error) {
-    status.value.status = 'error';
-    status.value.messsage = clientFlowToken.message;
-    return;
-  }
+    if (clientFlowToken instanceof Error) {
+      status.value.status = 'error';
+      status.value.messsage = clientFlowToken.message;
+      return status;
+    }
 
-  if (clientFlowToken instanceof ErrorToken) {
-    status.value.status = 'error';
-    status.value.messsage = clientFlowToken.Data.message;
-    return;
-  }
+    if (clientFlowToken instanceof ErrorToken) {
+      status.value.status = 'error';
+      status.value.messsage = clientFlowToken.Data.message;
+      status.value.statusCode = clientFlowToken.Data.statusCode;
+      return status;
+    }
 
-  status.value.status = 'success';
-  status.value.messsage = 'Токен Успешно Получен';
-  status.value.result = clientFlowToken;
+    status.value.status = 'success';
+    status.value.messsage = 'Токен Успешно Получен';
+    status.value.result = clientFlowToken;
+    status.value.statusCode = 200;
+    return status;
+  };
 
-  return { status };
+  return { status, flowToken };
 }
