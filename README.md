@@ -2,7 +2,7 @@
 
 Deploy: [https://develop--gentle-squirrel-39e9d3.netlify.app/](https://develop--gentle-squirrel-39e9d3.netlify.app/ "https://develop--gentle-squirrel-39e9d3.netlify.app/")
 
-UI-KIT: [![Netlify Status](https://api.netlify.com/api/v1/badges/8cf79fa5-dd55-4dd1-aa67-ac312cc264e4/deploy-status)](https://app.netlify.com/sites/e-commerce-app-ui-kit-ecp/deploys)
+UI-KIT: [https://e-commerce-app-ui-kit-ecp.netlify.app/](https://e-commerce-app-ui-kit-ecp.netlify.app/)
 
 ## Описание:
 
