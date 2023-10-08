@@ -1,6 +1,7 @@
 const env = import.meta.env;
 
 const getRightUrl = (url: string) => {
+  if (url === undefined) return '';
   return url[url.length - 1] === '/' ? url.slice(0, -1) : url;
 };
 
