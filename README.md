@@ -1,6 +1,8 @@
 # eCommerce-Application
 
-Deploy: [https://develop--gentle-squirrel-39e9d3.netlify.app/](https://develop--gentle-squirrel-39e9d3.netlify.app/ "https://develop--gentle-squirrel-39e9d3.netlify.app/")
+Deploy: [https://e-commerce-app-eca.netlify.app/](https://e-commerce-app-eca.netlify.app/)
+
+UI-KIT: [https://e-commerce-app-ui-kit-ecp.netlify.app/](https://e-commerce-app-ui-kit-ecp.netlify.app/)
 
 ## Описание:
 
