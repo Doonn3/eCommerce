@@ -1,6 +1,7 @@
 // import { NavigationGuardNext, RouteLocationNormalized } from 'vue-router';
 import { HomePage } from '@pages/HomePage';
 import { CatalogPage } from '@pages/CatalogPage';
+import { ProductPage } from '@pages/ProductPage';
 
 export const routes = [
   {
@@ -16,6 +17,11 @@ export const routes = [
     path: '/catalog/:id',
     name: 'catalog',
     component: CatalogPage
+  },
+  {
+    path: '/product-page',
+    name: 'product-page',
+    component: ProductPage
   }
 ];
 
