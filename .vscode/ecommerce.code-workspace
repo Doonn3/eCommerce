@@ -1,0 +1,56 @@
+{
+    "folders": [
+        {
+            "path": "../"
+        },
+        {
+            "path": "../src/app/" // folder has .code-workspace file
+        },
+        {
+            "path": "../src/pages" // folder has .code-workspace file
+        },
+        {
+            "path": "../src/widgets" // folder has .code-workspace file
+        },
+        {
+            "path": "../src/features" // folder has .code-workspace file
+        },
+        {
+            "path": "../src/entities/" // folder has .code-workspace file
+        },
+        {
+            "path": "../src/shared" // folder has .code-workspace file
+        }
+    ],
+    "settings": {
+        "[vue]": {
+            "editor.formatOnSave": true,
+            // "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "scss.lint.unknownAtRules": "ignore",
+        // "files.watcherExclude": {
+        //     "**/*": true,
+        // },
+        "npm.autoDetect": "on",
+        "tailwindCSS.suggestions": true,
+        "tailwindCSS.validate": true,
+        "tailwindCSS.files.exclude": [
+            "**/.git/**",
+            "**/node_modules/**",
+            "**/.hg/**",
+            "**/.svn/**"
+        ],
+        "editor.quickSuggestions": {
+            "strings": true
+        },
+    },
+    "extensions": {
+        "recommendations": [
+            "Vue.volar",
+            "Vue.vscode-typescript-vue-plugin",
+            "bradlc.vscode-tailwindcss",
+            "esbenp.prettier-vscode",
+            "dbaeumer.vscode-eslint"
+        ],
+    },
+}
