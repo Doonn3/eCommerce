@@ -3,6 +3,7 @@ import { OnClickOutside } from '@vueuse/components';
 import { SubMenu } from '@shared/ui-kit/Navigation';
 import { useAppState } from '@shared/State/AppState';
 import { useSwitch } from '@shared/lib/hooks';
+import { onMounted } from 'vue';
 
 const appState = useAppState();
 
@@ -19,6 +20,10 @@ const onClickCurrencyUsd = () => {
 const onClickCurrencyRub = () => {
   appState.changeCurrencyCode('RUB');
 };
+
+onMounted(() => {
+  console.log('asdasdasd');
+});
 </script>
 
 <template>
