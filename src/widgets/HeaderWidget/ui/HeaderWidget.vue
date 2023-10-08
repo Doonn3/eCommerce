@@ -11,7 +11,7 @@ import MobileNav from '../components/MobileNav.vue';
           <router-link to="/home">Home</router-link>
         </li>
         <li>
-          <router-link to="/catalog">Catalog</router-link>
+          <router-link :to="{ name: 'catalog', params: { id: 'categories' } }">Catalog</router-link>
         </li>
         <li>
           <router-link to="/about">About Us</router-link>

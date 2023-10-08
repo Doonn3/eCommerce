@@ -9,7 +9,7 @@ const loadState = localStorageService.load<StateType>(KEY_LOCAL_STORAGE);
 
 export const useAppState = defineStore(NAME_SPACE, () => {
   const state = reactive<StateType>(
-    loadState || { language: 'en-US', currencyCode: 'USD', theme: 'light' }
+    loadState || { language: 'en', currencyCode: 'USD', theme: 'light' }
   );
 
   useTheme(state.theme);

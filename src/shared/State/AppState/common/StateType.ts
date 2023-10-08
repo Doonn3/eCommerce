@@ -1,4 +1,4 @@
-export type LangType = 'ru' | 'en-US';
+export type LangType = 'ru' | 'en';
 
 export type CurrencyCodeType = 'EUR' | 'USD' | 'RUB';
 

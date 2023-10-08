@@ -8,7 +8,7 @@ const appState = useAppState();
 const toggle = useSwitch(false);
 
 const onClickLangEng = () => {
-  appState.changeLanguage('en-US');
+  appState.changeLanguage('en');
 };
 const onClickLangRus = () => {
   appState.changeLanguage('ru');

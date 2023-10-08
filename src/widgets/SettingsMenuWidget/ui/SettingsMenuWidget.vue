@@ -6,7 +6,7 @@ import { ChangeCurrency } from '@features/ChangeCurrency';
 </script>
 
 <template>
-  <horizontal-menu class="flex-nowrap">
+  <horizontal-menu>
     <template v-slot:left>
       <ChangeLanguage />
     </template>
