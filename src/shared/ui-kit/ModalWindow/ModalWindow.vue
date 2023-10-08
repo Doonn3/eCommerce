@@ -1,0 +1,21 @@
+<template>
+  <div
+    class="modal modal-open overflow-auto backdrop-blur-xl"
+    @click="clickOutspace"
+  >
+    <div class="w-3/4 bg-inherit">
+      <slot name="content"></slot>
+    </div>
+  </div>
+</template>
+
+<script lang="ts" setup>
+const emit = defineEmits(['event:click']);
+
+const clickOutspace = (e: MouseEvent) => {
+  const eventTarget = e.target;
+  if ((eventTarget as HTMLDivElement)!.classList.contains('modal')) {
+    emit('event:click');
+  }
+};
+</script>
