@@ -1,14 +1,12 @@
 <script lang="ts" setup>
-const props = withDefaults(
-  defineProps<{
-    isDisabled: boolean;
-    isChecked: boolean;
-  }>(),
-  {
-    isDisabled: false,
-    isChecked: false
-  }
-);
+type PropsType = {
+  isDisabled: boolean;
+  isChecked: boolean;
+};
+const props = withDefaults(defineProps<Partial<PropsType>>(), {
+  isDisabled: false,
+  isChecked: false
+});
 
 const emit = defineEmits<{
   (e: 'change'): void;

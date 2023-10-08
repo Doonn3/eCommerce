@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-type PropsType = {
+export type PropsType = {
   title: string;
   urlImg: string;
   descriptions: string;
@@ -13,7 +13,7 @@ const props = withDefaults(defineProps<Partial<PropsType>>(), {
 </script>
 
 <template>
-  <div class="card image-full w-full bg-base-100 shadow-xl">
+  <div class="card image-full card-compact w-full bg-base-100 shadow-xl">
     <figure>
       <img
         :src="props.urlImg"
