@@ -1,23 +1,27 @@
 <script lang="ts" setup>
-import { computed, defineEmits } from 'vue';
+import { defineEmits } from 'vue';
 type PropsType = {
-  type: string;
+  type: 'text' | 'number';
   placeholder: string;
-  condition: 'input-success' | 'input-warning' | 'input-error';
+  condition: 'success' | 'warning' | 'error';
   isDisable: boolean;
 };
 
-const props = withDefaults(defineProps<PropsType>(), {
+const props = withDefaults(defineProps<Partial<PropsType>>(), {
   type: 'text',
-  placeholder: '',
+  placeholder: 'Placeholder',
   isDisable: false
 });
 
 const emit = defineEmits(['event:input']);
 
-const getClass = () => computed(() => (props.condition ? props.condition : ''));
-const getPlaceholder = () => (props.placeholder ? props.placeholder : '');
-const getType = () => (props.type ? props.type : 'text');
+const inputStateStyle = () => {
+  if (props.condition === undefined) return '';
+  if (props.condition === 'success') return 'input-success';
+  if (props.condition === 'warning') return 'input-warning';
+  if (props.condition === 'error') return 'input-error';
+};
+
 const onInput = (e: Event) => {
   const newValue: string = (e.target! as HTMLInputElement).value;
   emit('event:input', newValue);
@@ -26,11 +30,11 @@ const onInput = (e: Event) => {
 
 <template>
   <input
-    :type="getType()"
-    :placeholder="getPlaceholder()"
-    :class="getClass"
+    :type="props.type"
+    :placeholder="props.placeholder"
     :disabled="isDisable"
     class="input input-bordered w-full max-w-xs"
+    :class="inputStateStyle()"
     @input="onInput"
   />
 </template>

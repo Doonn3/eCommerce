@@ -1,20 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 
-import SimpleInput from './SimpleInput.vue';
+import DisplayCard from './DisplayCard.vue';
 
 // More on how to set up stories at: https://storybook.js.org/docs/vue/writing-stories/introduction
-const meta: Meta<typeof SimpleInput> = {
-  title: 'UI-KIT/Data-Input/SimpleInput',
-  component: SimpleInput,
+const meta: Meta<typeof DisplayCard> = {
+  title: 'UI-KIT/Data-Display/DisplayCard',
+  component: DisplayCard,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/vue/writing-docs/autodocs
   tags: ['autodocs'],
-  argTypes: {
-    condition: {
-      control: 'select',
-      options: ['input-error', 'input-warning', 'input-success', 'default']
-    }
-    // onClick: { action: 'clicked' }
-  }
+  argTypes: {}
 };
 
 export default meta;
@@ -27,7 +21,8 @@ type Story = StoryObj<typeof meta>;
  */
 export const Default: Story = {
   args: {
-    type: 'text',
-    isDisable: false
+    title: 'Shoes!',
+    urlImg:
+      'https://images.unsplash.com/photo-1521903062400-b80f2cb8cb9d?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80'
   }
 };

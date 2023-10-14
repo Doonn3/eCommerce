@@ -6,10 +6,13 @@ import CardImageOverlaySkeleton from './CardImageOverlay/CardImageOverlaySkeleto
 
 import ProductCard from './ProductCard/ProductCard.vue';
 
+import DisplayCard from './DisplayCard/DisplayCard.vue';
+
 export {
   AlertText,
   CardImageOverlay,
   CardImageOverlaySkeleton,
   type PropsCardImageOverlayType,
-  ProductCard
+  ProductCard,
+  DisplayCard
 };

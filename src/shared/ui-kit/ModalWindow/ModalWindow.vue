@@ -6,16 +6,17 @@
     <div class="w-3/4 bg-inherit">
       <slot name="content"></slot>
     </div>
+    <slot></slot>
   </div>
 </template>
 
 <script lang="ts" setup>
-const emit = defineEmits(['event:click']);
+const emit = defineEmits(['event:close']);
 
 const clickOutspace = (e: MouseEvent) => {
   const eventTarget = e.target;
   if ((eventTarget as HTMLDivElement)!.classList.contains('modal')) {
-    emit('event:click');
+    emit('event:close');
   }
 };
 </script>

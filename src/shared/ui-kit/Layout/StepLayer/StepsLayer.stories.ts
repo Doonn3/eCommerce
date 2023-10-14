@@ -1,18 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 
-import SimpleInput from './SimpleInput.vue';
+import StepLayer from './StepLayer.vue';
 
 // More on how to set up stories at: https://storybook.js.org/docs/vue/writing-stories/introduction
-const meta: Meta<typeof SimpleInput> = {
-  title: 'UI-KIT/Data-Input/SimpleInput',
-  component: SimpleInput,
+const meta: Meta<typeof StepLayer> = {
+  title: 'UI-KIT/Layout/StepLayer',
+  component: StepLayer,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/vue/writing-docs/autodocs
   tags: ['autodocs'],
   argTypes: {
-    condition: {
-      control: 'select',
-      options: ['input-error', 'input-warning', 'input-success', 'default']
-    }
+    // position: { control: 'select', options: ['small', 'medium', 'large'] }
     // onClick: { action: 'clicked' }
   }
 };
@@ -26,8 +23,5 @@ type Story = StoryObj<typeof meta>;
  * to learn how to use render functions.
  */
 export const Default: Story = {
-  args: {
-    type: 'text',
-    isDisable: false
-  }
+  args: {}
 };
