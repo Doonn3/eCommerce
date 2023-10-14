@@ -43,6 +43,10 @@
         "editor.quickSuggestions": {
             "strings": true
         },
+        "files.associations": {
+            "*.css": "tailwindcss",
+            "*.scss": "tailwindcss",
+        }
     },
     "extensions": {
         "recommendations": [

@@ -2,6 +2,7 @@
 import { HomePage } from '@pages/HomePage';
 import { CatalogPage } from '@pages/CatalogPage';
 import { ProductPage } from '@pages/ProductPage';
+import { SignupPaga } from '@pages/SignUpPage';
 
 export const routes = [
   {
@@ -17,6 +18,11 @@ export const routes = [
     path: '/catalog/:id',
     name: 'catalog',
     component: CatalogPage
+  },
+  {
+    path: '/sign-up',
+    name: 'sign-up',
+    component: SignupPaga
   },
   {
     path: '/product-page',

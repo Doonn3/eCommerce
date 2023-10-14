@@ -2,6 +2,7 @@
 import { ProductFilterWidget } from '@widgets/ProductFilterWidget';
 import CategoryLayout from '../components/CategoryLayout.vue';
 import ProductsLayout from '../components/ProductsLayout.vue';
+import { ModalWidget } from '@widgets/ModalWidget';
 </script>
 
 <template>
@@ -9,5 +10,6 @@ import ProductsLayout from '../components/ProductsLayout.vue';
     <!-- <CategoryLayout /> -->
     <ProductsLayout />
     <ProductFilterWidget class="absolute right-0 top-0" />
+    <ModalWidget />
   </section>
 </template>

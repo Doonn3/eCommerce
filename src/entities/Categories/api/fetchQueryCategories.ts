@@ -1,6 +1,6 @@
 import { useFetch } from '@shared/lib/hooks/composables/useFetch';
 import { config } from '../../../shared/api/refactor/config/cmConfig';
-import type { CategoryPagedQueryResponseType } from '../model/CategoryPagedQueryResponseType';
+import type { CategoryPagedQueryResponseType } from '../types/CategoryPagedQueryResponseType';
 
 const { apiUrl, project_key, scope } = config;
 
