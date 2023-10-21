@@ -1,25 +1,37 @@
 <template>
   <div class="mt-10">
-    <div class="relative cursor-pointer">
-      <div class="relative mx-auto h-3/4 w-3/4 overflow-hidden">
+    <div
+      class="mx-auto cursor-pointer"
+      @click="imagesSwitch"
+    >
+      <div
+        class="mx-auto flex w-3/4 items-center overflow-hidden"
+        style="height: 50vh"
+      >
         <img
-          @click="imagesSwitch"
           :src="currentImage"
           alt="Main Image"
-          class="mx-auto cursor-pointer transition duration-500 ease-in-out"
+          class="h-full w-full object-contain transition duration-500 ease-in-out"
           :class="currentImageClasses"
         />
       </div>
     </div>
-    <div class="mx-auto mt-10 flex w-11/12 gap-2 overflow-auto pb-3">
-      <img
-        v-for="(image, index) in props.imagesSrc"
-        :key="index"
-        :src="image"
-        alt="Thumbnail Image"
-        class="w-1/4 cursor-pointer divide-solid border-2 border-transparent"
-        @click="getImage(index)"
-      />
+    <div class="mx-auto mt-10 w-11/12 pb-3">
+      <div class="flex justify-between gap-2 overflow-auto">
+        <img
+          v-for="(image, index) in props.imagesSrc"
+          :key="index"
+          :src="image"
+          alt="Thumbnail Image"
+          class="cursor-pointer divide-solid rounded"
+          :class="{
+            'light:border-blue-200 border-2  border-blue-500 dark:border-blue-500':
+              index === currenIndexImg
+          }"
+          style="height: 10vh; left: 50rem"
+          @click="getImage(index)"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -60,7 +72,6 @@ const imagesSwitch = (e: MouseEvent) => {
 const getPrevImage = () => {
   if (currenIndexImg.value !== 0) {
     prevImg();
-    //
   } else {
     currenIndexImg.value = props.imagesSrc.length;
     prevImg();
