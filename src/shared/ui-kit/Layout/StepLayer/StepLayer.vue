@@ -1,7 +1,8 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { computed } from 'vue';
 
 type PropsType = {
+  currentStep: number;
   steps: string[];
 };
 
@@ -11,26 +12,20 @@ const emit = defineEmits<{
   (e: 'event:step', data: { index: number; text: string }): void;
 }>();
 
-const indexStep = ref(0);
+const indexStep = computed(() => props.currentStep);
 
 const compStyle = (index: number) => {
-  if (indexStep.value >= index) return 'step-primary';
-  return '';
+  return indexStep.value >= index ? 'step-primary' : '';
 };
 </script>
 <template>
-  <ul class="steps steps-vertical lg:steps-horizontal">
+  <ul class="steps lg:steps-horizontal">
     <li
       v-for="(step, index) in props.steps"
       :key="index"
       class="step"
       :class="compStyle(index)"
-      @click="
-        () => {
-          indexStep = index;
-          emit('event:step', { index, text: step });
-        }
-      "
+      @click="() => emit('event:step', { index, text: step })"
     >
       {{ step }}
     </li>

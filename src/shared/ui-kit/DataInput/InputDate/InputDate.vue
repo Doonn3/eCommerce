@@ -1,15 +1,13 @@
 <script lang="ts" setup>
-import { defineEmits } from 'vue';
 type PropsType = {
   modelValue: string;
-  type: 'text' | 'number';
+
   placeholder: string;
   condition: 'success' | 'warning' | 'error' | 'default';
   isDisable: boolean;
 };
 
 const props = withDefaults(defineProps<Partial<PropsType>>(), {
-  type: 'text',
   placeholder: 'Placeholder',
   isDisable: false
 });
@@ -31,7 +29,7 @@ const onInput = (e: Event) => {
 
 <template>
   <input
-    :type="props.type"
+    type="date"
     :placeholder="props.placeholder"
     :disabled="isDisable"
     class="input input-bordered w-full"

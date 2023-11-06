@@ -5,7 +5,7 @@ type PropsType = {
   isIndeterminate: boolean;
 };
 
-const props = withDefaults(defineProps<PropsType>(), {
+const props = withDefaults(defineProps<Partial<PropsType>>(), {
   isDisabled: false,
   isChecked: false,
   isIndeterminate: true
