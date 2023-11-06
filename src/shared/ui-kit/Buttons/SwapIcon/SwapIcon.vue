@@ -9,7 +9,7 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <label class="swap-rotate swap h-10 w-10">
+  <label class="swap swap-rotate h-10 w-10">
     <!-- this hidden checkbox controls the state -->
     <input
       type="checkbox"

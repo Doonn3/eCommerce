@@ -1,24 +1,30 @@
 <script lang="ts" setup>
 import { PaginationLayer } from '@shared/ui-kit/Navigation';
-import { ProductCard } from '@shared/ui-kit/DataDisplay';
+import { DisplayCard } from '@shared/ui-kit/DataDisplay';
 import { ProductList, useProductStore, useProductFilterStore } from '@entities/Product';
 import { onMounted } from 'vue';
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
 
 const productStore = useProductStore();
 const productFilter = useProductFilterStore();
 
 onMounted(() => {
-  productStore.requestGetProducts();
-  productFilter.requestManufacturers();
+  const { id } = route.params;
+  if (id === undefined) {
+    productStore.requestGetProducts();
+  } else {
+    productStore.requestGetProductsByCategory(id as string);
+  }
+  // productFilter.requestManufacturers();
 });
 </script>
 
 <template>
-  <section
-    class="product-list grid min-h-[320px] min-w-[320px] grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5"
-  >
+  <section class="product-list grid place-items-center gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
     <product-list>
-      <ProductCard
+      <DisplayCard
         v-for="product in productStore.GetProducts"
         :key="product.id"
         :url-img="product.urlImage"

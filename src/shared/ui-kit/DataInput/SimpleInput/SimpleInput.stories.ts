@@ -9,7 +9,10 @@ const meta: Meta<typeof SimpleInput> = {
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/vue/writing-docs/autodocs
   tags: ['autodocs'],
   argTypes: {
-    // position: { control: 'select', options: ['small', 'medium', 'large'] }
+    condition: {
+      control: 'select',
+      options: ['input-error', 'input-warning', 'input-success', 'default']
+    }
     // onClick: { action: 'clicked' }
   }
 };
@@ -23,5 +26,8 @@ type Story = StoryObj<typeof meta>;
  * to learn how to use render functions.
  */
 export const Default: Story = {
-  args: {}
+  args: {
+    type: 'text',
+    isDisable: false
+  }
 };

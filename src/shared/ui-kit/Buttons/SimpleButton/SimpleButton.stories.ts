@@ -8,10 +8,7 @@ const meta: Meta<typeof SimpleButton> = {
   component: SimpleButton,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/vue/writing-docs/autodocs
   tags: ['autodocs'],
-  argTypes: {
-    // position: { control: 'select', options: ['small', 'medium', 'large'] }
-    // onClick: { action: 'clicked' }
-  }
+  argTypes: {}
 };
 
 export default meta;
@@ -22,8 +19,79 @@ type Story = StoryObj<typeof meta>;
  * See https://storybook.js.org/docs/vue/api/csf
  * to learn how to use render functions.
  */
+
 export const Default: Story = {
   args: {
     name: 'Simple Button'
+  }
+};
+
+export const Accent: Story = {
+  args: {
+    name: 'Simple Button',
+    options: { colorStyle: 'btn-accent' }
+  }
+};
+
+export const Ghost: Story = {
+  args: {
+    name: 'Simple Button',
+    options: { colorStyle: 'btn-ghost' }
+  }
+};
+
+export const Neutral: Story = {
+  args: {
+    name: 'Simple Button',
+    options: { colorStyle: 'btn-neutral' }
+  }
+};
+
+export const Primary: Story = {
+  args: {
+    name: 'Simple Button',
+    options: { colorStyle: 'btn-primary' }
+  }
+};
+
+export const Secondary: Story = {
+  args: {
+    name: 'Simple Button',
+    options: { colorStyle: 'btn-secondary' }
+  }
+};
+
+export const Info: Story = {
+  args: {
+    name: 'Simple Button',
+    options: { colorStyle: 'btn-info' }
+  }
+};
+
+export const Link: Story = {
+  args: {
+    name: 'Simple Button',
+    options: { colorStyle: 'btn-link' }
+  }
+};
+
+export const Warning: Story = {
+  args: {
+    name: 'Simple Button',
+    options: { colorStyle: 'btn-warning' }
+  }
+};
+
+export const Success: Story = {
+  args: {
+    name: 'Simple Button',
+    options: { colorStyle: 'btn-success' }
+  }
+};
+
+export const Error: Story = {
+  args: {
+    name: 'Simple Button',
+    options: { colorStyle: 'btn-error' }
   }
 };

@@ -25,8 +25,7 @@
           alt="Thumbnail Image"
           class="cursor-pointer divide-solid rounded"
           :class="{
-            'light:border-blue-200 border-2  border-blue-500 dark:border-blue-500':
-              index === currenIndexImg
+            'light:border-blue-200 border-2  border-blue-500 dark:border-blue-500': index === currenIndexImg
           }"
           style="height: 10vh; left: 50rem"
           @click="getImage(index)"

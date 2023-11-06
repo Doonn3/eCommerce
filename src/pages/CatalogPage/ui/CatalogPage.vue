@@ -1,13 +1,16 @@
 <script lang="ts" setup>
-import { ProductFilterWidget } from '@widgets/ProductFilterWidget';
-import CategoryLayout from '../components/CategoryLayout.vue';
 import ProductsLayout from '../components/ProductsLayout.vue';
+import { HeaderWidget } from '@widgets/HeaderWidget';
+import { CatalogMenuWidget } from '@widgets/CatalogMenuWidget';
 </script>
 
 <template>
+  <HeaderWidget />
   <section class="catalog relative grid grid-flow-row gap-5 p-10">
-    <!-- <CategoryLayout /> -->
     <ProductsLayout />
-    <ProductFilterWidget class="absolute right-0 top-0" />
+
+    <div class="fixed inset-x-0 bottom-0 flex justify-center">
+      <CatalogMenuWidget />
+    </div>
   </section>
 </template>

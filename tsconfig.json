@@ -19,7 +19,8 @@
         "vite/client", 
         "@storybook/vue3", 
         "@storybook/vue3-vite",
-        "node"
+        "node",
+        "vue"
       ],
       "strict": true,
       "noImplicitAny": true,
@@ -36,6 +37,7 @@
       "rootDir": ".",
       "baseUrl": "src",
       "paths": {
+          "@/*": ["./*"],
           "@app/*": ["app/*"],
           "@pages/*": ["pages/*"],
           "@widgets/*": ["widgets/*"],
