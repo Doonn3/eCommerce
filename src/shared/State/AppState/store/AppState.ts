@@ -1,42 +1,42 @@
 import { defineStore } from 'pinia';
 import { computed, reactive } from 'vue';
-import localStorageService from '@shared/lib/services/LocalStorageService';
+import { useLocalStorage } from '@shared/lib/composables';
 import type { CurrencyCodeType, LangType, StateType } from '../common/StateType';
 import { KEY_LOCAL_STORAGE, NAME_SPACE } from '../common/consts';
 import { useTheme } from '../hooks/useTheme';
 
-const loadState = localStorageService.load<StateType>(KEY_LOCAL_STORAGE);
-
 export const useAppState = defineStore(NAME_SPACE, () => {
-  const state = reactive<StateType>(
-    loadState || { language: 'en', currencyCode: 'USD', theme: 'light' }
-  );
+  const localStorage = useLocalStorage();
+  const loadState = localStorage.load<StateType>(KEY_LOCAL_STORAGE);
 
-  useTheme(state.theme);
+  const state = reactive<StateType>(loadState || { language: 'en', currencyCode: 'USD', theme: 'business' });
+
+  const theme = useTheme();
+  theme.switchTheme(state.theme);
 
   const changeLanguage = (lang: LangType) => {
     state.language = lang;
-    localStorageService.save<StateType>(state, KEY_LOCAL_STORAGE);
+    localStorage.set<StateType>(KEY_LOCAL_STORAGE, state);
   };
 
   const changeCurrencyCode = (code: CurrencyCodeType) => {
     state.currencyCode = code;
-    localStorageService.save<StateType>(state, KEY_LOCAL_STORAGE);
+    localStorage.set<StateType>(KEY_LOCAL_STORAGE, state);
   };
 
   const switchTheme = () => {
     switch (state.theme) {
       case 'light':
         state.theme = 'business';
-        useTheme(state.theme);
+        theme.switchTheme(state.theme);
         break;
       case 'business':
         state.theme = 'light';
-        useTheme(state.theme);
+        theme.switchTheme(state.theme);
         break;
     }
 
-    localStorageService.save<StateType>(state, KEY_LOCAL_STORAGE);
+    localStorage.set<StateType>(KEY_LOCAL_STORAGE, state);
   };
 
   const getState = computed(() => {
