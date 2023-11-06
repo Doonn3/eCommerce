@@ -1,9 +1,9 @@
 <template>
   <div
-    class="modal modal-open overflow-auto backdrop-blur-xl"
+    class="modal modal-open cursor-pointer overflow-auto backdrop-blur-xl"
     @click="clickOutspace"
   >
-    <div class="w-3/4 bg-inherit">
+    <div class="w-3/4 rounded bg-inherit">
       <slot name="content"></slot>
     </div>
   </div>
