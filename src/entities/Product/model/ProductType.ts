@@ -1,9 +1,4 @@
-import {
-  type LocalizedString,
-  type DateTime,
-  type Price,
-  type Image
-} from '@shared/api/common/CommonType';
+import { type LocalizedString, type DateTime, type Price, type Image } from '@shared/api/common/CommonType';
 
 type ProductVariantType = {
   id: string;

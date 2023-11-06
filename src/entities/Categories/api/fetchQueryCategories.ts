@@ -1,5 +1,5 @@
-import { useFetch } from '@shared/lib/hooks/composables/useFetch';
-import { config } from '../../../shared/api/refactor/config/cmConfig';
+import { useFetch } from '@shared/lib/customFetch';
+import { config } from '../../../shared/api/config/cmConfig';
 import type { CategoryPagedQueryResponseType } from '../types/CategoryPagedQueryResponseType';
 
 const { apiUrl, project_key, scope } = config;
@@ -10,10 +10,7 @@ const URL = `${apiUrl}/${project_key}/categories`;
 const SCOPES = `${scope.view_products} ${scope.view_categories}`;
 
 export async function fetchQueryCategories() {
-  const { fetchData, data, isError, isLoading, message } =
-    useFetch<CategoryPagedQueryResponseType>(URL);
+  const { data, isError, isLoading } = await useFetch<CategoryPagedQueryResponseType>({ url: URL });
 
-  await fetchData();
-
-  return { isError, isLoading, message, data };
+  return { isError, isLoading, data };
 }

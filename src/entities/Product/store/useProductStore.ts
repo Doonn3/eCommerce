@@ -2,10 +2,7 @@ import { computed, ref } from 'vue';
 import { defineStore } from 'pinia';
 import { useAppState } from '@shared/State/AppState';
 
-import {
-  fetchQueryProductProjections,
-  fetchQueryProductProjectionsByCategory
-} from '../api/fetchProduct';
+import { fetchQueryProductProjections, fetchQueryProductProjectionsByCategory } from '../api/fetchProduct';
 
 import type { ProductProjectionPagedQueryResponseType } from '../model/ProductType';
 
@@ -15,7 +12,7 @@ export const useProductStore = defineStore(NAME_SPACE, () => {
   // State
   const appState = useAppState();
   const data = ref<ProductProjectionPagedQueryResponseType | null>(null);
-  const isLoading = ref(true);
+  const isLoading = ref(false);
   // << State
 
   // Getters
@@ -28,9 +25,7 @@ export const useProductStore = defineStore(NAME_SPACE, () => {
       return data.value.results.map((product) => {
         const id = product.id;
         const name = product.name[appState.getState.language];
-        const description = product.description
-          ? product.description[appState.getState.language]
-          : '';
+        const description = product.description ? product.description[appState.getState.language] : '';
         const urlImage = product.masterVariant.images ? product.masterVariant.images[0].url : ''; // Берем первый попавшийся Image
         const findCurrencyPrice = product.masterVariant.prices?.find((_price) => {
           if (_price.value.currencyCode === appState.getState.currencyCode) {
@@ -66,19 +61,21 @@ export const useProductStore = defineStore(NAME_SPACE, () => {
   // Actions
   async function requestGetProducts(offset = 0, limit = 10) {
     if (offset <= 0) offset = 0;
-    const products = await fetchQueryProductProjections(limit, offset * limit);
-    if (products === null) return null;
-    data.value = products.data.value;
-    isLoading.value = products.isLoading.value;
-    return products;
+    isLoading.value = true;
+    const products = await fetchQueryProductProjections(limit, offset * limit).finally(() => (isLoading.value = false));
+
+    if (products instanceof Error) return;
+
+    data.value = products;
   }
 
   async function requestGetProductsByCategory(id: string, offset = 0, limit = 10) {
-    const products = await fetchQueryProductProjectionsByCategory(id);
-    if (products === null) return null;
-    data.value = products.data.value;
-    isLoading.value = products.isLoading.value;
-    return products;
+    const products = await fetchQueryProductProjectionsByCategory(id).finally(() => (isLoading.value = false));
+    isLoading.value = true;
+
+    if (products instanceof Error) return;
+
+    data.value = products;
   }
   // << Actions
 
