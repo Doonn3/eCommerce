@@ -9,7 +9,9 @@ const props = defineProps<PropsType>();
 </script>
 
 <template>
-  <div class="group flex w-full max-w-xs flex-col self-center overflow-hidden rounded-lg border border-gray-100/30 bg-gray-700 shadow-md hover:border-gray-100/50">
+  <div
+    class="group flex max-h-[400px] min-h-[400px] w-full max-w-xs flex-col self-center overflow-hidden rounded-lg border border-gray-100/30 bg-gray-700 shadow-md hover:border-gray-100/50"
+  >
     <div class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl">
       <img
         class="peer absolute right-0 top-0 h-full w-full object-cover"

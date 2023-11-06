@@ -78,8 +78,8 @@ const message = (val: keyof FormType) => {
       />
       <div class="flex w-full justify-evenly">
         <LinkText
-          link-to="/home"
-          name="Back to home"
+          link-to="/catalog"
+          name="Back to catalog"
         />
         <LinkText
           link-to="/sign-up"

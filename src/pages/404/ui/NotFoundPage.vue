@@ -9,8 +9,8 @@ import { LinkText } from '@shared/ui-kit/Navigation';
     paragraph=""
   >
     <LinkText
-      link-to="/home"
-      name="Back to home"
+      link-to="/catalog"
+      name="Back to catalog"
     />
   </centered-hero>
 </template>

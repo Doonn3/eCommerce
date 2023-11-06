@@ -131,8 +131,8 @@ const message = (data: typeof props.form, val: keyof AddressType) => {
 
     <div class="flex w-full justify-around">
       <LinkText
-        link-to="/home"
-        name="Back to home"
+        link-to="/catalog"
+        name="Back to catalog"
       />
       <LinkText
         link-to="/login"

@@ -95,8 +95,8 @@ const message = (val: keyof TFormFields) => {
 
     <div class="flex w-full justify-around">
       <LinkText
-        link-to="/home"
-        name="Back to home"
+        link-to="/catalog"
+        name="Back to catalog"
       />
       <LinkText
         link-to="/login"
