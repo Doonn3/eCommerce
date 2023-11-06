@@ -19,6 +19,9 @@
             "path": "../src/entities/" // folder has .code-workspace file
         },
         {
+            "path": "../src/auth" // folder has .code-workspace file
+        },
+        {
             "path": "../src/shared" // folder has .code-workspace file
         }
     ],
@@ -27,6 +30,7 @@
             "editor.formatOnSave": true,
             // "editor.defaultFormatter": "esbenp.prettier-vscode"
         },
+        "tailwindCSS.classAttributes": ["class", "className", "ngClass", ".*Styles", ".*Classes"],
         "scss.lint.unknownAtRules": "ignore",
         // "files.watcherExclude": {
         //     "**/*": true,
@@ -46,7 +50,8 @@
         "files.associations": {
             "*.css": "tailwindcss",
             "*.scss": "tailwindcss",
-        }
+        },
+        "tailwindCSS.experimental.configFile": "../tailwind.config.ts"
     },
     "extensions": {
         "recommendations": [

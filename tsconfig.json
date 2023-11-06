@@ -37,6 +37,7 @@
       "rootDir": ".",
       "baseUrl": "src",
       "paths": {
+          "@/*": ["./*"],
           "@app/*": ["app/*"],
           "@pages/*": ["pages/*"],
           "@widgets/*": ["widgets/*"],
