@@ -1,33 +1,45 @@
 // import { NavigationGuardNext, RouteLocationNormalized } from 'vue-router';
-import { HomePage } from '@pages/HomePage';
 import { CatalogPage } from '@pages/CatalogPage';
 import { ProductPage } from '@pages/ProductPage';
-import { SignupPaga } from '@pages/SignUpPage';
+import { SignupPage } from '@pages/SignUpPage';
+import { LoginPage } from '@pages/LoginPage';
+import { DevelopingPage } from '@pages/DevelopingPage';
+import { NotFoundPage } from '@pages/404';
 
 export const routes = [
   {
     path: '/',
-    redirect: '/home'
+    redirect: '/catalog'
   },
   {
-    path: '/home',
-    name: 'home',
-    component: HomePage
-  },
-  {
-    path: '/catalog/:id',
+    path: '/catalog',
     name: 'catalog',
     component: CatalogPage
   },
   {
     path: '/sign-up',
     name: 'sign-up',
-    component: SignupPaga
+    component: SignupPage
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: LoginPage
   },
   {
     path: '/product-page',
     name: 'product-page',
     component: ProductPage
+  },
+  {
+    path: '/profile',
+    name: 'profile',
+    component: DevelopingPage
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFoundPage',
+    component: NotFoundPage
   }
 ];
 
