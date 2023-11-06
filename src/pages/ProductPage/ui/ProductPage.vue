@@ -2,9 +2,7 @@
   <div class="block flex-row-reverse gap-5 sm:flex">
     <div class="mt-10 flex justify-center sm:w-7/12">
       <div class="w-3/4">
-        <h2 class="mb-5 text-2xl font-bold leading-tight tracking-tight md:text-3xl">
-          Lorem ipsum dolor, sit amet consectetur, adipisicing elit.
-        </h2>
+        <h2 class="mb-5 text-2xl font-bold leading-tight tracking-tight md:text-3xl">Lorem ipsum dolor, sit amet consectetur, adipisicing elit.</h2>
         <p class="text-sm text-gray-500">
           By
           <a

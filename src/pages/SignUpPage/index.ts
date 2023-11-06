@@ -1,3 +1,3 @@
-import SignupPaga from './ui/SignupPaga.vue';
+import SignupPage from './ui/SignupPage.vue';
 
-export { SignupPaga };
+export { SignupPage };

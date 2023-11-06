@@ -17,12 +17,12 @@ onMounted(() => {
   } else {
     productStore.requestGetProductsByCategory(id as string);
   }
-  productFilter.requestManufacturers();
+  // productFilter.requestManufacturers();
 });
 </script>
 
 <template>
-  <section class="product-list grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
+  <section class="product-list grid place-items-center gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
     <product-list>
       <DisplayCard
         v-for="product in productStore.GetProducts"
