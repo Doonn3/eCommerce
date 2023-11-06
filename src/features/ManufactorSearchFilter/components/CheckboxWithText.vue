@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { CheckBox } from '@shared/ui-kit/DataInput';
-import { useSwitch } from '@shared/lib/hooks';
+import { useSwitch } from '@shared/lib/composables';
 type PropsType = {
   name: string;
   initState?: boolean;
