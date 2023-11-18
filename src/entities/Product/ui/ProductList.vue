@@ -8,6 +8,7 @@ const productStore = useProductStore();
 <template>
   <template v-if="productStore.IsLoading">
     <CardImageOverlaySkeleton
+      class="z-0"
       v-for="index in 20"
       :key="index"
     />

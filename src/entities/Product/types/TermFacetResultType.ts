@@ -12,8 +12,10 @@ type TermFacetResultType = {
   terms: FacetTerm[];
 };
 
+type FacetsType = {
+  'variants.attributes.manufacturer': TermFacetResultType;
+};
+
 export type FacetResponse = {
-  facets: {
-    [key: string]: TermFacetResultType;
-  };
+  facets: FacetsType;
 };

@@ -1,27 +1,21 @@
-import type { LocalizedString } from '../../../../shared/api/common/CommonType';
+import { useAppState } from '@shared/State/AppState';
+import type { CategoryPagedQueryResponseType } from '../../types/CategoryPagedQueryResponseType';
 
-export type ShowCategoryType = {
+export type CategoryType = {
   id: string;
   name: string;
 };
 
-export type NewCategoryType = {
-  id: string;
-  name: LocalizedString;
-  childs: {
-    id: string;
-    name: LocalizedString;
-  }[];
-};
-
 export type StateType = {
+  stateApp: ReturnType<typeof useAppState>;
   isLoading: boolean;
-  data: NewCategoryType[];
-  showCategory: ShowCategoryType[];
+  categoriesRawData: CategoryPagedQueryResponseType | null;
+  categoryStack: CategoryType[][];
 };
 
 export const state = (): StateType => ({
+  stateApp: useAppState(),
   isLoading: true,
-  data: [],
-  showCategory: []
+  categoriesRawData: null,
+  categoryStack: []
 });

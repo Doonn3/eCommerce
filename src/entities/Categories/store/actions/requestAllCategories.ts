@@ -1,39 +1,21 @@
-import { useAppState } from '../../../../shared/State/AppState';
 import { fetchQueryCategories } from '../../api/fetchQueryCategories';
-import type { CategoryPagedQueryResponseType } from '../../types/CategoryPagedQueryResponseType';
-import type { NewCategoryType, StateType } from '../state/state';
+import { root } from '../lib/processingRawCategory';
+import { type StateType } from '../state/state';
 
 export async function requestAllCategories(state: StateType) {
+  state.isLoading = true;
   const categories = await fetchQueryCategories();
-  if (categories === null) return null;
+  if (categories instanceof Error) {
+    state.isLoading = false;
+    return null;
+  }
 
-  state.data = build(categories.data.value);
+  state.categoriesRawData = categories;
 
-  state.showCategory = state.data.map((_category) => {
-    return { id: _category.id, name: _category.name[useAppState().getState.language] };
-  });
+  const rootCategories = root({ rawCategory: categories, state });
+  state.categoryStack.push(rootCategories);
 
-  // InitBuildCategoryList();
-  state.isLoading = categories.isLoading.value;
+  state.isLoading = false;
 
   return categories;
-}
-
-function build(categoryPaged: CategoryPagedQueryResponseType | null) {
-  if (categoryPaged === null) return [];
-  const categories = categoryPaged.results;
-
-  const parentFilter = categories.filter((_item) => _item.parent === undefined);
-
-  const result = parentFilter.map<NewCategoryType>((_category) => {
-    const childs = categories
-      .filter((_item) => _item.parent?.id === _category.id)
-      .map((_item) => {
-        return { id: _item.id, name: _item.name };
-      });
-
-    return { id: _category.id, name: _category.name, childs: childs };
-  });
-
-  return result;
 }

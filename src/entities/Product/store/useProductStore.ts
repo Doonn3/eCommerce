@@ -2,9 +2,10 @@ import { computed, ref } from 'vue';
 import { defineStore } from 'pinia';
 import { useAppState } from '@shared/State/AppState';
 
-import { fetchQueryProductProjections, fetchQueryProductProjectionsByCategory } from '../api/fetchProduct';
+import { fetchGetProductProjectionByID, fetchProductProjectionSearch, fetchQueryProductProjections, fetchQueryProductProjectionsByCategory } from '../api/fetchProduct';
 
-import type { ProductProjectionPagedQueryResponseType } from '../model/ProductType';
+import type { ProductProjectionPagedQueryResponseType, ProductProjectionType } from '../types/ProductType';
+import { findPriceInCurrency } from '../lib/helpers';
 
 const NAME_SPACE = 'UseProductStore';
 
@@ -12,6 +13,7 @@ export const useProductStore = defineStore(NAME_SPACE, () => {
   // State
   const appState = useAppState();
   const data = ref<ProductProjectionPagedQueryResponseType | null>(null);
+  const product = ref<ProductProjectionType | null>(null);
   const isLoading = ref(false);
   // << State
 
@@ -19,6 +21,25 @@ export const useProductStore = defineStore(NAME_SPACE, () => {
   const IsLoading = computed(() => isLoading.value);
 
   const Data = computed(() => data.value);
+
+  const GetProduct = computed(() => {
+    if (product.value === null) return null;
+
+    const findPriceData = findPriceInCurrency(product.value.masterVariant.prices, appState.getState.currencyCode);
+
+    const result = {
+      id: product.value.id,
+      name: product.value.name[appState.getState.language],
+      descriptions: product.value.description ? product.value.description[appState.getState.language] : '',
+      urlImages: product.value.masterVariant.images?.map((img) => img.url),
+      priceData: {
+        price: findPriceData?.price,
+        currency: findPriceData?.currency
+      }
+    };
+
+    return result;
+  });
 
   const GetProducts = computed(() => {
     if (data.value) {
@@ -70,12 +91,37 @@ export const useProductStore = defineStore(NAME_SPACE, () => {
   }
 
   async function requestGetProductsByCategory(id: string, offset = 0, limit = 10) {
-    const products = await fetchQueryProductProjectionsByCategory(id).finally(() => (isLoading.value = false));
     isLoading.value = true;
+    const products = await fetchQueryProductProjectionsByCategory(id).finally(() => (isLoading.value = false));
 
     if (products instanceof Error) return;
 
     data.value = products;
+  }
+
+  async function requestGetProductById(id: string) {
+    isLoading.value = true;
+    const res = await fetchGetProductProjectionByID(id).finally(() => (isLoading.value = false));
+
+    if (res instanceof Error) return;
+
+    product.value = res;
+  }
+
+  async function requestProductSearch(searchText: string) {
+    isLoading.value = true;
+
+    const res = await fetchProductProjectionSearch(appState.getState.language, searchText).finally(() => (isLoading.value = false));
+
+    console.log(res);
+
+    if (res instanceof Error) return;
+
+    data.value = res;
+  }
+
+  function setData(_data: ProductProjectionPagedQueryResponseType) {
+    data.value = _data;
   }
   // << Actions
 
@@ -85,6 +131,10 @@ export const useProductStore = defineStore(NAME_SPACE, () => {
     GetProducts,
     IsLoading,
     GetTotalPaginationNumber,
-    requestGetProductsByCategory
+    requestGetProductsByCategory,
+    requestGetProductById,
+    GetProduct,
+    requestProductSearch,
+    setData
   };
 });

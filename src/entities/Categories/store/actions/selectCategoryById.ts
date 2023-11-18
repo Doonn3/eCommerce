@@ -1,22 +1,17 @@
 import type { StateType } from '../state/state';
-import { useAppState } from '../../../../shared/State/AppState';
+import { childsCategoryById } from '../lib/processingRawCategory';
 
 export function selectCategoryById(state: StateType, id: string) {
-  const find = state.data.find((_category) => {
-    if (_category.id === id) {
-      return _category;
-    } else {
-      return _category.childs.find((_child) => _child.id === id);
-    }
-  });
+  const result = childsCategoryById(state, id);
+  if (result === null) return;
 
-  if (find === undefined) return;
+  const alreadyInStack = state.categoryStack.some((categories) => categories.length === result.length && categories.every((value, index) => value.id === result[index].id));
 
-  const parent = { id: find.id, name: find.name[useAppState().getState.language] };
+  if (!alreadyInStack) {
+    state.categoryStack.push(result);
+  }
+}
 
-  const childs = find.childs.map((_item) => {
-    return { id: _item.id, name: _item.name[useAppState().getState.language] };
-  });
-
-  state.showCategory = [parent, ...childs];
+export function prevCategory(state: StateType) {
+  state.categoryStack.pop();
 }

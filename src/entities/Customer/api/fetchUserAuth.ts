@@ -20,7 +20,7 @@ export async function fetchUserSignin(user: MyCustomerSigninType) {
         data: { email: user.email, password: user.password }
       }
     });
-    const resOK = res.status === 200 && res.statusText === 'OK';
+    const resOK = res.status === 200;
     if (resOK) {
       return res.data;
     }
@@ -38,7 +38,7 @@ export async function fetchUserSignUp(user: MyCustomerDraftType) {
       headers: { 'Content-Type': 'application/json' },
       metadata: { type: 'signup', data: { email: user.email, password: user.password } }
     });
-    const resOK = res.status === 200 && res.statusText === 'OK';
+    const resOK = res.status === 200;
     if (resOK) {
       return res.data;
     }
