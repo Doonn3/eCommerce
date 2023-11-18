@@ -8,7 +8,7 @@ import { auth } from '@/auth/model/AuthMonitor';
     <SimpleButton
       v-if="auth.IsAuthorized.value === false"
       name="Login"
-      :options="{ colorStyle: 'btn-primary' }"
+      :options="{ colorStyle: 'btn-link' }"
       class="w-[80px] md:w-[100px]"
     />
   </router-link>

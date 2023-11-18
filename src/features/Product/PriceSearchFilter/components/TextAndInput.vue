@@ -1,8 +1,9 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
+import { InputNumber } from '@shared/ui-kit/DataInput';
 
 type PropsType = {
-  name: string;
+  id: string;
   placeHolder: string;
   initValue: number;
 };
@@ -12,28 +13,24 @@ const props = defineProps<PropsType>();
 const valueRef = ref(props.initValue);
 
 export type EmitType = {
-  name: string;
+  id: string;
   value: number;
 };
 
 const emit = defineEmits<{ (e: 'info', emit: EmitType): void }>();
 
-const onInput = (event: Event) => {
-  const target = event.target;
-  if (!(target instanceof HTMLInputElement)) return;
-  emit('info', { name: props.name, value: Number(target.value) });
+const onInput = (value: string) => {
+  emit('info', { id: props.id, value: Number(value) });
 };
 </script>
 
 <template>
   <div class="flex space-x-2">
-    <p>{{ props.name }}</p>
-    <input
-      class="w-full"
-      type="number"
-      :placeholder="props.placeHolder"
-      :value="valueRef"
-      @input="onInput"
+    <InputNumber
+      :pattern="{ min: 0, max: 100000000 }"
+      v-model="valueRef"
+      :place-holder="props.placeHolder"
+      @event:input="onInput"
     />
   </div>
 </template>
