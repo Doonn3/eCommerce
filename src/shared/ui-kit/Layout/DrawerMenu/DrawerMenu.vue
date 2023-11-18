@@ -13,7 +13,7 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <div class="drawer">
+  <div class="drawer z-[1999]">
     <input
       id="my-drawer"
       type="checkbox"

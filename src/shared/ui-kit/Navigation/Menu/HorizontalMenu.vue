@@ -1,7 +1,7 @@
 <script lang="ts" setup></script>
 
 <template>
-  <ul class="menu rounded-box menu-horizontal bg-base-300">
+  <ul class="menu menu-horizontal rounded-box bg-base-300">
     <slot name="left">
       <li>
         <a>

@@ -22,10 +22,11 @@ const openStyle = computed(() => {
   <div class="relative z-10 inline-block">
     <!-- Dropdown toggle button -->
     <button
-      class="btn btn-accent btn-outline relative flex items-center px-2"
+      class="btn-ghost flex flex-nowrap items-center p-0 md:btn-sm"
       @click="onClick"
     >
-      <span class="mx-1">{{ props.name || 'Default Name' }}</span>
+      <UserIcon />
+
       <svg
         class="mx-1 h-5 w-5"
         viewBox="0 0 24 24"
@@ -40,13 +41,6 @@ const openStyle = computed(() => {
     </button>
 
     <!-- Dropdown menu -->
-    <!-- x-show="isOpen"
-x-transition:enter="transition ease-out duration-100"
-x-transition:enter-start="opacity-0 scale-90"
-x-transition:enter-end="opacity-100 scale-100"
-x-transition:leave="transition ease-in duration-100"
-x-transition:leave-start="opacity-100 scale-100"
-x-transition:leave-end="opacity-0 scale-90" -->
     <div
       class="absolute right-0 mt-2 w-56 origin-top-right overflow-hidden rounded-md bg-base-300 py-2 shadow-xl"
       :class="openStyle"

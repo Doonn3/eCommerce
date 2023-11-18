@@ -41,9 +41,7 @@ import { ref } from 'vue';
 type PropsType = {
   imagesSrc: string[];
 };
-const props = withDefaults(defineProps<PropsType>(), {
-  imagesSrc: () => ['']
-});
+const props = defineProps<PropsType>();
 
 const currenIndexImg = ref<number>(0);
 const currentImage = ref<string>(props.imagesSrc[0]);

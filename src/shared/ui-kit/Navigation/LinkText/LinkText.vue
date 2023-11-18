@@ -10,6 +10,6 @@ const props = defineProps<PropsType>();
   <router-link
     :to="props.linkTo"
     class="link-info link"
-    >{{ props.name }}</router-link
-  >
+    >{{ props.name }}
+  </router-link>
 </template>

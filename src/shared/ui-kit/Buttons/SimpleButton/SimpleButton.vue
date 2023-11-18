@@ -11,10 +11,12 @@ type PropsType = {
     colorStyle?: ColorStyleType;
     outlineStyle?: OutlineType;
   };
+  isDisabled?: boolean;
 };
 
 const props = withDefaults(defineProps<PropsType>(), {
-  name: 'Simple Button'
+  name: 'Simple Button',
+  isDisabled: false
 });
 </script>
 
@@ -23,6 +25,7 @@ const props = withDefaults(defineProps<PropsType>(), {
     :type="props.type || 'button'"
     class="btn btn-wide"
     :class="[props.options?.outlineStyle, props.options?.colorStyle, props.isLoading ? 'pointer-events-none' : '']"
+    :disabled="isDisabled || isLoading"
   >
     <template v-if="props.isLoading">
       <span class="loading loading-spinner loading-md"></span>
