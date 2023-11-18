@@ -3,7 +3,7 @@ import { auth } from './AuthMonitor';
 
 export async function tokenFlow() {
   let token = auth.Token;
-
+  console.log(token);
   if (token === null) {
     const res = await anonymousToken();
 
