@@ -1,13 +1,32 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
+
 import { DrawerMenu } from '@shared/ui-kit/Layout';
-import { FeatureManufactorFilter } from '@features/ManufactorSearchFilter';
-import { FeaturePriceSearchFilter } from '@features/PriceSearchFilter';
 import FilterIcon from '@shared/ui-kit/assets/FilterIcon.vue';
+import { FeatureManufactorFilter } from '@features/Product/ManufactorSearchFilter';
+import { FeaturePriceSearchFilter } from '@features/Product/PriceSearchFilter';
+import { useRoute } from 'vue-router';
+import { useProductFilterStore } from '../../../../entities/Product';
+
+const route = useRoute();
+const productFilter = useProductFilterStore();
+
 const isOpen = ref(false);
 
 const onSwitchOpen = () => {
   isOpen.value = !isOpen.value;
+
+  init();
+};
+
+const init = () => {
+  const categoryId = route.params.id;
+
+  if (categoryId.length < 1 || categoryId === undefined) return;
+
+  console.log(categoryId, 'categoryId');
+
+  productFilter.requestManufacturers(categoryId as string);
 };
 </script>
 
@@ -25,18 +44,7 @@ const onSwitchOpen = () => {
     >
       <div class="space-y-5">
         <FeatureManufactorFilter />
-        <!-- <simple-form name="Price">
-          <div class="flex flex-row space-x-5">
-            <input
-              type="text"
-              class="h-10 w-full"
-            />
-            <input
-              type="text"
-              class="h-10 w-full"
-            />
-          </div>
-        </simple-form> -->
+
         <FeaturePriceSearchFilter />
       </div>
     </drawer-menu>

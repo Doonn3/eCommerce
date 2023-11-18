@@ -23,9 +23,8 @@ const openClose = () => {
       :is-open="isOpenNav"
       @click="openClose"
     >
-      <li><router-link to="/home">Home</router-link></li>
       <li><router-link to="/catalog">Catalog</router-link></li>
-      <li><router-link to="/about">About Us</router-link></li>
+      <li><router-link to="/about-us">About Us</router-link></li>
     </drawer-menu>
   </div>
 </template>

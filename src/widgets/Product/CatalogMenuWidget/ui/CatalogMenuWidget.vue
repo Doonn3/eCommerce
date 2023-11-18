@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import { ProductFilterWidget } from '@widgets/ProductFilterWidget';
-import { ModalWidget } from '@widgets/ModalWidget';
+import { ProductFilterWidget } from '@widgets/Product/ProductFilterWidget';
+import { CategoryListWidget } from '../../Category';
 </script>
 
 <template>
-  <div class="group rounded-box z-[2000] flex space-x-2 bg-base-300 p-2">
-    <ModalWidget />
+  <div class="group z-[2000] flex space-x-2 rounded-box bg-base-300 p-2">
+    <CategoryListWidget />
     <ProductFilterWidget />
   </div>
 </template>
@@ -36,7 +36,4 @@ import { ModalWidget } from '@widgets/ModalWidget';
     @apply bg-base-content/30;
   }
 }
-// .group:hover :slotted(*) {
-//   background-color: red;
-// }
 </style>
