@@ -11,8 +11,9 @@ export const routes = [
     path: '/',
     redirect: '/catalog'
   },
+
   {
-    path: '/catalog',
+    path: '/catalog/:category?/:id?',
     name: 'catalog',
     component: CatalogPage
   },
@@ -27,7 +28,7 @@ export const routes = [
     component: LoginPage
   },
   {
-    path: '/product-page',
+    path: '/product-page/:id',
     name: 'product-page',
     component: ProductPage
   },

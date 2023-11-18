@@ -3,6 +3,7 @@ import { RouterView } from 'vue-router';
 import { onMounted } from 'vue';
 import { useAppState } from '../shared/State/AppState';
 import { AlertMessage } from '@shared/State/AlertStateMessage';
+import { SettingsWidget } from '@widgets/SettingsWidget';
 
 onMounted(() => {
   useAppState();
@@ -13,6 +14,8 @@ onMounted(() => {
   <main>
     <RouterView />
   </main>
+
+  <SettingsWidget />
 
   <AlertMessage />
 </template>
