@@ -11,11 +11,13 @@ const customer = useCustomer();
   <div>
     <SimpleButton
       name="Back"
+      :options="{ colorStyle: 'btn-primary' }"
       @click="() => state.prev()"
     />
     <SimpleButton
       :is-loading="customer.IsLoading"
       name="Submit"
+      :options="{ colorStyle: 'btn-primary' }"
       @click="() => state.submit()"
     />
   </div>

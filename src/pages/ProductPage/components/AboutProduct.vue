@@ -30,10 +30,11 @@
 </template>
 
 <script lang="ts" setup>
+import { computed } from 'vue';
+
 import AddRemoveButton from '@shared/ui-kit/Buttons/AddRemoveButton/AddRemoveButton.vue';
 import addToCartSvg from '@shared/assets/add-icon.svg';
 import deletefromCartSvg from '@shared/assets/deleteFromCart.svg';
-import { computed } from 'vue';
 
 type PropsType = {
   title: string;

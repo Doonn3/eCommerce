@@ -121,10 +121,12 @@ const message = (data: typeof props.form, val: keyof AddressType) => {
     <div class="mx-auto mt-5 space-x-10">
       <SimpleButton
         name="Back"
+        :options="{ colorStyle: 'btn-primary' }"
         @click.prevent="() => state.prev()"
       />
       <SimpleButton
         name="Next"
+        :options="{ colorStyle: 'btn-primary' }"
         @click.prevent="onSubmit"
       />
     </div>

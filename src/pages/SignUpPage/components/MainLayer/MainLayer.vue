@@ -90,6 +90,7 @@ const message = (val: keyof TFormFields) => {
 
     <SimpleButton
       name="Next"
+      :options="{ colorStyle: 'btn-primary' }"
       @click.prevent="onSubmit"
     />
 
