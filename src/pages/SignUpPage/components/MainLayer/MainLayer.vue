@@ -1,21 +1,15 @@
 <script lang="ts" setup>
 import { PasswordInput, SimpleInput } from '@shared/ui-kit/DataInput';
-import { SimpleButton } from '@shared/ui-kit/Buttons';
-import { LinkText } from '@shared/ui-kit/Navigation';
 import { InputField } from '@shared/ui-kit/DataInput';
 import { InputDate } from '@shared/ui-kit/DataInput';
 
-import { useState } from '../../model/statePage';
-import { type TFormFields, mainForm } from './model/MainLayerModel';
+import { ControlLayer } from '../ControlLayer';
 
-const state = useState();
+import { type TFormFields, mainForm } from '../../model/MainModel';
 
-const onSubmit = () => {
-  if (mainForm.Valid()) {
-    state.setMainData(mainForm.state);
-    state.next();
-  }
-};
+const emit = defineEmits<{
+  (e: 'emit-form', form: TFormFields): void;
+}>();
 
 const message = (val: keyof TFormFields) => {
   if (mainForm.StatusText(val) === 'success') return 'Success';
@@ -87,22 +81,15 @@ const message = (val: keyof TFormFields) => {
         />
       </input-field>
     </div>
-
-    <SimpleButton
-      name="Next"
-      :options="{ colorStyle: 'btn-primary' }"
-      @click.prevent="onSubmit"
+    <ControlLayer
+      :hide-control="'back'"
+      @next="
+        () => {
+          if (mainForm.Valid()) {
+            emit('emit-form', mainForm.state);
+          }
+        }
+      "
     />
-
-    <div class="flex w-full justify-around">
-      <LinkText
-        link-to="/catalog"
-        name="Back to catalog"
-      />
-      <LinkText
-        link-to="/login"
-        name="login"
-      />
-    </div>
   </section>
 </template>

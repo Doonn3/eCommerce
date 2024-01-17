@@ -26,9 +26,13 @@
         }
     ],
     "settings": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
         "[vue]": {
             "editor.formatOnSave": true,
-            // "editor.defaultFormatter": "esbenp.prettier-vscode"
+            "editor.codeActionsOnSave": {
+                "source.fixAll": true
+            },
+            "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
         },
         "tailwindCSS.classAttributes": ["class", "className", "ngClass", ".*Styles", ".*Classes"],
         "scss.lint.unknownAtRules": "ignore",

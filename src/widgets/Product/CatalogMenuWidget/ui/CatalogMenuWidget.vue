@@ -1,12 +1,16 @@
 <script lang="ts" setup>
-import { ProductFilterWidget } from '@widgets/Product/ProductFilterWidget';
 import { CategoryListWidget } from '../../Category';
+import { ChangeTheme } from '@features/ChangeTheme';
+import { ChangeLanguage } from '@features/ChangeLanguage';
+import { ChangeCurrency } from '@features/ChangeCurrency';
 </script>
 
 <template>
   <div class="group z-[2000] flex space-x-2 rounded-box bg-base-300 p-2">
     <CategoryListWidget />
-    <ProductFilterWidget />
+    <ChangeTheme />
+    <ChangeLanguage />
+    <ChangeCurrency />
   </div>
 </template>
 
@@ -14,10 +18,9 @@ import { CategoryListWidget } from '../../Category';
 .group {
   pointer-events: none;
 
-  * {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  & > * {
+    display: grid;
+    place-content: center;
 
     max-height: 40px;
     max-width: 40px;
@@ -33,7 +36,7 @@ import { CategoryListWidget } from '../../Category';
   }
 
   *:hover {
-    @apply bg-base-content/30;
+    @apply bg-accent-content/40;
   }
 }
 </style>

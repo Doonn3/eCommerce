@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router';
 import { onMounted } from 'vue';
-import { useAppState } from '../shared/State/AppState';
+import { RouterView } from 'vue-router';
+
+import { useAppState } from '@shared/State/AppState';
 import { AlertMessage } from '@shared/State/AlertStateMessage';
-import { SettingsWidget } from '@widgets/SettingsWidget';
 
 onMounted(() => {
   useAppState();
@@ -11,11 +11,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <main>
-    <RouterView />
-  </main>
-
-  <SettingsWidget />
+  <RouterView />
 
   <AlertMessage />
 </template>

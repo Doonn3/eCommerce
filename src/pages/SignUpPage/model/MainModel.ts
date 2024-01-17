@@ -30,7 +30,3 @@ const formMainRules = create('MainLayerForm', (data: TFormFields, _nameField?: k
 export const mainForm = useVestForm<TFormFields>(mainFormData, (_formdata, _nameField) => {
   return formMainRules(_formdata, _nameField);
 });
-
-export const getDataForm = () => {
-  return mainForm.state;
-};

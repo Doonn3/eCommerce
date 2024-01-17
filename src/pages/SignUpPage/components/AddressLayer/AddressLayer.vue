@@ -1,13 +1,15 @@
 <script lang="ts" setup>
-import { SimpleInput, CheckBoxToggle } from '@shared/ui-kit/DataInput';
-import { SimpleButton } from '@shared/ui-kit/Buttons';
-import { InputField } from '@shared/ui-kit/DataInput';
-import { SelectMenu, LinkText } from '@shared/ui-kit/Navigation';
-
-import { useState } from '../../model/statePage';
-import { type AddressType } from './model/AddressLayerModel';
-import type { VestFormType } from '@shared/lib/VestValidation';
 import { ref } from 'vue';
+
+import { SimpleInput, CheckBoxToggle } from '@shared/ui-kit/DataInput';
+import { InputField } from '@shared/ui-kit/DataInput';
+import { SelectMenu } from '@shared/ui-kit/Navigation';
+import type { VestFormType } from '@shared/lib/VestValidation';
+
+import { ControlLayer } from '../ControlLayer';
+
+import { type AddressType } from '../../model/AddressModel';
+
 type PropsType = {
   form: VestFormType<AddressType>;
 };
@@ -15,8 +17,6 @@ type PropsType = {
 const props = defineProps<PropsType>();
 
 const modelForm = ref(props.form.state);
-
-const state = useState();
 
 const countryData = [
   {
@@ -31,38 +31,34 @@ const countryData = [
 
 const emit = defineEmits<{
   (e: 'update:model', data: AddressType): void;
-  (e: 'submit:model'): void;
+  (e: 'emit:form', data: AddressType): void;
+  (e: 'emit:back'): void;
 }>();
 
-const onSubmit = () => {
-  if (props.form.Valid()) {
-    emit('submit:model');
-
-    state.next();
-  }
+const message = (data: typeof props.form, val: keyof AddressType) => {
+  if (data.StatusText(val) === 'success') return 'Success';
+  return data.GetError(val);
 };
 
-const message = (data: typeof props.form, val: keyof AddressType) => {
-  if (data.Result.value?.isValid(val)) return 'Success';
-  return data.GetError(val);
+const status = (val: keyof AddressType) => {
+  return props.form.StatusText(val);
 };
 </script>
 <template>
-  <section class="sign-up-main-layer flex h-full flex-col space-y-10">
-    <div class="mt-5 w-full">
+  <section class="sign-up-main-layer grid space-y-10">
+    <div class="grid gap-5">
       <input-field
         name="Country"
         :message="message(props.form, 'country')"
-        :status="props.form.StatusText('country')"
+        :status="status('country')"
       >
         <SelectMenu
           id="country"
           label="Option Country"
-          :status="props.form.StatusText('country')"
+          :status="status('country')"
           :options="countryData"
           @event:select="
             (val) => {
-              console.log(val);
               modelForm.country = val;
               emit('update:model', modelForm);
             }
@@ -73,7 +69,7 @@ const message = (data: typeof props.form, val: keyof AddressType) => {
       <input-field
         name="City"
         :message="message(props.form, 'city')"
-        :status="props.form.StatusText('city')"
+        :status="status('city')"
       >
         <SimpleInput
           :model-value="modelForm.city"
@@ -83,14 +79,14 @@ const message = (data: typeof props.form, val: keyof AddressType) => {
               emit('update:model', modelForm);
             }
           "
-          :condition="props.form.StatusText('city')"
+          :condition="status('city')"
         />
       </input-field>
 
       <input-field
         name="Street"
         :message="message(props.form, 'street')"
-        :status="props.form.StatusText('street')"
+        :status="status('street')"
       >
         <SimpleInput
           :model-value="modelForm.street"
@@ -100,7 +96,7 @@ const message = (data: typeof props.form, val: keyof AddressType) => {
               emit('update:model', modelForm);
             }
           "
-          :condition="props.form.StatusText('street')"
+          :condition="status('street')"
         />
       </input-field>
 
@@ -116,29 +112,16 @@ const message = (data: typeof props.form, val: keyof AddressType) => {
         />
         <p>Default shipping address</p>
       </div>
-    </div>
 
-    <div class="mx-auto mt-5 space-x-10">
-      <SimpleButton
-        name="Back"
-        :options="{ colorStyle: 'btn-primary' }"
-        @click.prevent="() => state.prev()"
-      />
-      <SimpleButton
-        name="Next"
-        :options="{ colorStyle: 'btn-primary' }"
-        @click.prevent="onSubmit"
-      />
-    </div>
-
-    <div class="flex w-full justify-around">
-      <LinkText
-        link-to="/catalog"
-        name="Back to catalog"
-      />
-      <LinkText
-        link-to="/login"
-        name="login"
+      <ControlLayer
+        @back="emit('emit:back')"
+        @next="
+          {
+            if (props.form.Valid()) {
+              emit('emit:form', modelForm);
+            }
+          }
+        "
       />
     </div>
   </section>

@@ -9,17 +9,14 @@ import { ProductCard } from '@features/Product/ProductCard';
 const route = useRoute();
 
 const productStore = useProductStore();
-// const productFilter = useProductFilterStore();
 
 onMounted(() => {
   const { id } = route.params;
-  console.log(id, 'ID');
   if (id.length < 1) {
     productStore.requestGetProducts();
   } else {
     productStore.requestGetProductsByCategory(id as string);
   }
-  // productFilter.requestManufacturers();
 });
 </script>
 

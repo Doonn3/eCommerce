@@ -1,4 +1,4 @@
-// import { NavigationGuardNext, RouteLocationNormalized } from 'vue-router';
+import { NAV_CATALOG } from '@entities/Navigation';
 import { CatalogPage } from '@pages/CatalogPage';
 import { ProductPage } from '@pages/ProductPage';
 import { SignupPage } from '@pages/SignUpPage';
@@ -9,23 +9,29 @@ import { NotFoundPage } from '@pages/404';
 export const routes = [
   {
     path: '/',
-    redirect: '/catalog'
+    redirect: NAV_CATALOG.PATH_DEFAULT
   },
 
   {
-    path: '/catalog/:category?/:id?',
-    name: 'catalog',
+    path: NAV_CATALOG.PATH,
+    name: NAV_CATALOG.NAME,
     component: CatalogPage
   },
   {
     path: '/sign-up',
     name: 'sign-up',
-    component: SignupPage
+    component: SignupPage,
+    meta: {
+      requiresGuest: true
+    }
   },
   {
     path: '/login',
     name: 'login',
-    component: LoginPage
+    component: LoginPage,
+    meta: {
+      requiresGuest: true
+    }
   },
   {
     path: '/product-page/:id',
@@ -35,6 +41,14 @@ export const routes = [
   {
     path: '/profile',
     name: 'profile',
+    component: DevelopingPage,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/home',
+    name: 'home',
     component: DevelopingPage
   },
   {

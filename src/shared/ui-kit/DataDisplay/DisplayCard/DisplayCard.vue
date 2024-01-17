@@ -11,18 +11,18 @@ const props = defineProps<PropsType>();
 
 <template>
   <div
-    class="group flex max-h-[400px] min-h-[400px] w-full max-w-xs cursor-pointer flex-col self-center overflow-hidden rounded-lg border border-gray-100/30 bg-gray-700 shadow-md hover:border-gray-100/50"
+    class="group flex max-h-[400px] min-h-[400px] w-full max-w-xs cursor-pointer flex-col self-center overflow-hidden rounded-lg border border-gray-100/30 bg-base-300 shadow-md hover:border-gray-100/50"
   >
-    <div class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl">
+    <div class="relative mx-3 mt-3 flex max-h-[200px] min-h-[200px] overflow-hidden rounded-xl bg-white">
       <img
-        class="peer absolute right-0 top-0 h-full w-full object-cover"
+        class="peer absolute right-0 top-0 h-full w-full object-contain"
         :src="props.urlImg"
         alt="product image"
       />
       <!-- <span class="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">39% OFF</span> -->
     </div>
     <div class="mt-4 px-5 pb-5">
-      <div class="max-h-[60px] overflow-hidden">
+      <div class="max-h-[30px] overflow-hidden">
         <h5 class="text-xl tracking-tight text-white">{{ props.title }}</h5>
       </div>
       <div class="mb-5 mt-2 flex items-center justify-between">

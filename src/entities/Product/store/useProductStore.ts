@@ -90,7 +90,8 @@ export const useProductStore = defineStore(NAME_SPACE, () => {
     data.value = products;
   }
 
-  async function requestGetProductsByCategory(id: string, offset = 0, limit = 10) {
+  //offset = 0, limit = 10
+  async function requestGetProductsByCategory(id: string) {
     isLoading.value = true;
     const products = await fetchQueryProductProjectionsByCategory(id).finally(() => (isLoading.value = false));
 
@@ -112,8 +113,6 @@ export const useProductStore = defineStore(NAME_SPACE, () => {
     isLoading.value = true;
 
     const res = await fetchProductProjectionSearch(appState.getState.language, searchText).finally(() => (isLoading.value = false));
-
-    console.log(res);
 
     if (res instanceof Error) return;
 

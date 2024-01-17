@@ -1,24 +1,51 @@
 import { computed, ref } from 'vue';
 
-export function useSteps() {
-  const data = ref(0);
+type OtioonsType = {
+  min: number;
+  max: number;
+};
 
-  const Data = computed(() => {
-    return data.value;
+type PropsType = {
+  step: number;
+  options?: OtioonsType;
+};
+
+export function useSteps(props: PropsType) {
+  const state = ref(props);
+
+  const State = computed(() => {
+    return state.value;
   });
 
   const setStep = (_value: number) => {
-    data.value = _value;
+    if (state.value.options) {
+      if (_value >= state.value.options.max) {
+        state.value.step = state.value.options.max;
+      } else if (_value <= state.value.options.min) {
+        state.value.step = state.value.options.min;
+      }
+    }
+    state.value.step = _value;
   };
 
   const prev = () => {
-    data.value -= 1;
-    if (data.value < 0) data.value = 0;
+    state.value.step -= 1;
+    if (state.value.options) {
+      if (state.value.step <= state.value.options.min) {
+        state.value.step = state.value.options.min;
+      }
+    }
   };
 
   const next = () => {
-    data.value += 1;
+    state.value.step += 1;
+
+    if (state.value.options) {
+      if (state.value.step >= state.value.options.max) {
+        state.value.step = state.value.options.max;
+      }
+    }
   };
 
-  return { Data, prev, next, setStep };
+  return { State, prev, next, setStep };
 }

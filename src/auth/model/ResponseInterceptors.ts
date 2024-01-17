@@ -1,6 +1,33 @@
 import type { AxiosError, AxiosResponse } from 'axios';
+import { passwordFlow, tokenFlow } from './AuthFlow';
+import { authController } from '../command/CommandHandler';
 
-export function ResponseInterceptor(response: AxiosResponse): AxiosResponse | Promise<AxiosResponse> {
+function requestLogin(responce: AxiosResponse) {
+  if (responce.metadata) {
+    const { type, data } = responce.metadata;
+    if (type === 'signup' && data) {
+      return { isLogin: true, data };
+    }
+  }
+  return { isLogin: false };
+}
+
+export async function ResponseInterceptor(response: AxiosResponse) {
+  return authController.responce(response);
+  // console.log('Сработал RESPONCE');
+  // let token = await tokenFlow();
+  // const requestIsLogin = requestLogin(response);
+
+  // if (requestIsLogin.isLogin && requestIsLogin.data) {
+  //   const { email, password } = requestIsLogin.data;
+  //   console.log('Сработал RESPONCE,, PASSWORD FLOW');
+  //   token = await passwordFlow(email, password);
+  // }
+
+  // if (token) {
+  //   response.headers.Authorization = `Bearer ${token.access_token}`;
+  // }
+
   return response;
 }
 

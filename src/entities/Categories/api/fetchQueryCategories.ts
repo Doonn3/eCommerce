@@ -1,14 +1,13 @@
-import { useFetch } from '@shared/lib/customFetch';
 import { config } from '../../../shared/api/config/cmConfig';
 import type { CategoryPagedQueryResponseType } from '../types/CategoryPagedQueryResponseType';
 import { http } from '../../../auth/model/interceptors';
 
-const { apiUrl, project_key, scope } = config;
+const { apiUrl, project_key } = config;
 
 const URL = `${apiUrl}/${project_key}/categories`;
 // const URL = `${apiUrl}/${project_key}/categories/search?filter=categories.id:"8ce96d24-0f50-44a6-9124-49bc51a2e80a"`;
 
-const SCOPES = `${scope.view_products} ${scope.view_categories}`;
+// const SCOPES = `${scope.view_products} ${scope.view_categories}`;
 
 export async function fetchQueryCategories() {
   try {

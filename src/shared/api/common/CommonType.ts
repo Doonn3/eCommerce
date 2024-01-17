@@ -76,9 +76,9 @@ export type Price = {
   //   tiers?: PriceTier[];
 };
 
-type CategoryReference = {};
+export type CategoryReference = {};
 
-type Asset = {};
+export type Asset = {};
 
 type CustomFields = {};
 

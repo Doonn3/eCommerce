@@ -2,7 +2,7 @@ import { type Ref, ref } from 'vue';
 import type { TokenType } from '../types/Types';
 import { revokingToken } from '../api/AuthFlowToken';
 
-class AuthMonitor {
+export class AuthMonitor {
   private token: TokenType | null;
   public IsAuthorized: Ref<boolean>;
 

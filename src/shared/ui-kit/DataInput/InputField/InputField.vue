@@ -22,7 +22,7 @@ const textStateSyle = () => {
 };
 </script>
 <template>
-  <div class="flex flex-col space-y-4">
+  <div class="flex flex-col space-y-5">
     <label class="space-x-2 text-xl">
       <span>{{ props.name }}</span>
       <span
@@ -32,13 +32,13 @@ const textStateSyle = () => {
       >
     </label>
     <slot> </slot>
-    <template v-if="props.isShowMessage">
-      <p
-        class="min-h-8 text-base"
-        :class="textStateSyle()"
-      >
-        {{ message }}
-      </p>
-    </template>
+
+    <p
+      v-show="props.isShowMessage"
+      class="h-[8px] text-base"
+      :class="textStateSyle()"
+    >
+      {{ message }}
+    </p>
   </div>
 </template>

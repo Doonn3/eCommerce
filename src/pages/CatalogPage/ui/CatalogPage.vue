@@ -1,14 +1,16 @@
 <script lang="ts" setup>
 import { useProductStore } from '@entities/Product';
+import { useProductFilterStore } from '@entities/Product';
+
 import { HeaderWidget } from '@widgets/HeaderWidget';
 import { CatalogMenuWidget } from '@widgets/Product/CatalogMenuWidget';
 
 import CatalogLayout from '../Layouts/CatalogLayout.vue';
-
 import AsideFilter from '../components/AsideFilter.vue';
 import ProductsLayout from '../components/ProductsLayout.vue';
 
 const productStore = useProductStore();
+const productFilterStore = useProductFilterStore();
 </script>
 
 <template>
@@ -20,7 +22,7 @@ const productStore = useProductStore();
   </template>
 
   <template v-else>
-    <catalog-layout>
+    <catalog-layout :is-aside-collapsed="productFilterStore.isManufacturers">
       <template v-slot:aside>
         <AsideFilter />
       </template>

@@ -53,10 +53,10 @@ const onClick = () => {
 }
 
 .search-btn {
-  @apply flex h-10 w-10 items-center justify-center rounded-s-xl bg-primary p-2;
+  @apply absolute flex h-10 w-10 items-center justify-center rounded-full p-2 hover:bg-base-300;
 }
 
 .input-search {
-  @apply input h-10 w-full border-none  p-2 focus:outline-none;
+  @apply input h-10 w-full rounded-full border-none p-2 pl-10 focus:outline-none;
 }
 </style>

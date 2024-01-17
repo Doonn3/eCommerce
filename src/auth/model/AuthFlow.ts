@@ -3,7 +3,6 @@ import { auth } from './AuthMonitor';
 
 export async function tokenFlow() {
   let token = auth.Token;
-  console.log(token);
   if (token === null) {
     const res = await anonymousToken();
 
@@ -20,7 +19,12 @@ export async function tokenFlow() {
 export async function passwordFlow(email: string, password: string) {
   let token = auth.Token;
   const res = await passwordToken(email, password);
+
+  console.log('password-flow-not-ok', res);
+
   if (res instanceof Error) return token;
+
+  console.log('password-flow', res);
 
   token = res;
 

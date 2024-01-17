@@ -23,7 +23,18 @@ const billingModel: AddressType = {
   isDefault: false
 };
 
-const addressRuls = create('AddresLayer', (data: AddressType, _nameField?: keyof AddressType) => {
+const shippingRuls = create('ShippingAddress', (data: AddressType, _nameField?: keyof AddressType) => {
+  only(_nameField);
+
+  test((_nameField = 'country'), `Select option is required`, () => {
+    enforce(data.country).isNotBlank();
+  });
+
+  ruls.textRuls(data.city, (_nameField = 'city'));
+  ruls.textRuls(data.street, (_nameField = 'street'));
+});
+
+const billingRuls = create('BillingAddress', (data: AddressType, _nameField?: keyof AddressType) => {
   only(_nameField);
 
   test((_nameField = 'country'), `Select option is required`, () => {
@@ -35,9 +46,9 @@ const addressRuls = create('AddresLayer', (data: AddressType, _nameField?: keyof
 });
 
 export const shippingForm = useVestForm(shippingModel, (_dataForm, _nameField) => {
-  return addressRuls(_dataForm, _nameField);
+  return shippingRuls(_dataForm, _nameField);
 });
 
 export const billingForm = useVestForm(billingModel, (_dataForm, _nameField) => {
-  return addressRuls(_dataForm, _nameField);
+  return billingRuls(_dataForm, _nameField);
 });

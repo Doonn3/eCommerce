@@ -17,7 +17,7 @@ onMounted(() => {
 });
 
 const handleChildClick = () => {
-  console.log('add/remove from button');
+  // console.log('add/remove from button');
 };
 
 // const imagesMassive = [

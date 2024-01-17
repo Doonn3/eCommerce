@@ -5,17 +5,21 @@ import { fetchProductManufacturers } from '../api/fetchProductManufacturers';
 import { useRoute, useRouter } from 'vue-router';
 import type { OptionsFilterType } from '../types/OptionsFilterType';
 import { fetchProductProjectionQueryFilterSearch } from '../api/fetchProduct';
-import { useAppState } from '../../../shared/State/AppState';
+// import { useAppState } from '../../../shared/State/AppState';
 import { useProductStore } from './useProductStore';
 
 const NAME_SPACE = 'UseProductFilter';
 
 export const useProductFilterStore = defineStore(NAME_SPACE, () => {
   const producStore = useProductStore();
-  const appState = useAppState();
+  // const appState = useAppState();
   const state = ref<FacetResponse | null>(null);
   const router = useRouter();
   const route = useRoute();
+
+  const isManufacturers = computed(() => {
+    return state.value === null;
+  });
 
   const GetManufacturersName = computed(() => {
     const terms = state.value?.facets['variants.attributes.manufacturer'].terms;
@@ -45,8 +49,6 @@ export const useProductFilterStore = defineStore(NAME_SPACE, () => {
 
     if (res instanceof Error) return;
 
-    console.log(res);
-
     producStore.setData(res);
 
     const queryManufacture = JSON.stringify(filter.manufacturer);
@@ -64,5 +66,5 @@ export const useProductFilterStore = defineStore(NAME_SPACE, () => {
     });
   }
 
-  return { GetManufacturersName, requestManufacturers, reset, filter };
+  return { isManufacturers, GetManufacturersName, requestManufacturers, reset, filter };
 });

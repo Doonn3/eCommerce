@@ -24,8 +24,6 @@ const init = () => {
 
   if (categoryId.length < 1 || categoryId === undefined) return;
 
-  console.log(categoryId, 'categoryId');
-
   productFilter.requestManufacturers(categoryId as string);
 };
 </script>

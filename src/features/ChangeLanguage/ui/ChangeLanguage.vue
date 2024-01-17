@@ -1,31 +1,33 @@
 <script lang="ts" setup>
-import { useAppState } from '@shared/State/AppState';
+import { useAppState, type LangType } from '@shared/State/AppState';
 
 const appState = useAppState();
 
-const onClickLangEng = () => {
-  appState.changeLanguage('en');
-};
-const onClickLangRus = () => {
-  appState.changeLanguage('ru');
+const onChange = (event: Event) => {
+  const target = event.target;
+  if (!(target instanceof HTMLSelectElement)) return;
+
+  appState.changeLanguage(target.value as LangType);
 };
 </script>
 
 <template>
-  <div class="space-x-3">
-    <input
-      class="btn btn-xs"
-      type="radio"
-      name="language"
-      aria-label="Rus"
-      @click="onClickLangRus"
-    />
-    <input
-      class="btn btn-xs"
-      type="radio"
-      name="language"
-      aria-label="Eng"
-      @click="onClickLangEng"
-    />
-  </div>
+  <select
+    class="select select-md min-h-0 border-none bg-transparent p-0 text-center"
+    @change="onChange"
+    :value="appState.getState.language === 'ru' ? 'ru' : 'en'"
+  >
+    <option
+      class="bg-base-300"
+      value="en"
+    >
+      ENG
+    </option>
+    <option
+      class="bg-base-300"
+      value="ru"
+    >
+      RUS
+    </option>
+  </select>
 </template>

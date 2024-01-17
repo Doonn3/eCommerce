@@ -1,11 +1,12 @@
 <script lang="ts" setup>
 import { InputField, SimpleInput, PasswordInput } from '@shared/ui-kit/DataInput';
 import { SimpleButton } from '@shared/ui-kit/Buttons';
+import { ref } from 'vue';
+import { create, only } from 'vest';
+
 import { LinkText } from '@shared/ui-kit/Navigation';
 import { useVestForm, ruls } from '@shared/lib/VestValidation';
-import { ref } from 'vue';
 import { useCustomer } from '@entities/Customer';
-import { create, only } from 'vest';
 
 const userStore = useCustomer();
 

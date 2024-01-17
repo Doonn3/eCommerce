@@ -1,4 +1,4 @@
-import { axiosInstance } from '@shared/api/http';
+import { axiosInstance } from '@/shared/api/axiosInstance';
 import { config } from '@shared/api/config/cmConfig';
 import type { TokenType } from '../types/Types';
 
@@ -54,7 +54,6 @@ export async function refreshToken(refreshToken: string) {
   try {
     const res = await axiosInstance.post<TokenType>(url, {}, { headers });
     const resOK = res.status === 200;
-    console.log('Refresh Token');
     if (resOK) {
       return res.data;
     }

@@ -38,10 +38,12 @@ export const useCustomer = defineStore(NAME_SPACE, () => {
 
     if (res instanceof Error) {
       isError = true;
+      alert.AddMessage({ status: 'error', message: res.message });
     } else {
       user.value = res;
       userName.value = res.customer.firstName || null;
       ls.set('user-name', userName.value);
+      alert.AddMessage({ status: 'success', message: 'Success Sign Up' });
     }
 
     return { data: res, isError, isLoading: isLoadingRef.value };

@@ -5,9 +5,9 @@ import type { MyCustomerSigninType } from '../types/MyCustomerSigninType';
 import type { CustomerSignInResultType } from '../types/CustomerSignInResultType';
 import type { MyCustomerDraftType } from '../types/MyCustomerDraftType';
 
-const { apiUrl, project_key, scope } = config;
+const { apiUrl, project_key } = config;
 
-const SCOPE = scope.manage_my_profile;
+// const SCOPE = scope.manage_my_profile;
 
 export async function fetchUserSignin(user: MyCustomerSigninType) {
   const url = `${apiUrl}/${project_key}/me/login`;
@@ -32,17 +32,19 @@ export async function fetchUserSignin(user: MyCustomerSigninType) {
 
 export async function fetchUserSignUp(user: MyCustomerDraftType) {
   const url = `${apiUrl}/${project_key}/me/signup`;
-
   try {
     const res = await http.post<CustomerSignInResultType>(url, user, {
       headers: { 'Content-Type': 'application/json' },
       metadata: { type: 'signup', data: { email: user.email, password: user.password } }
     });
+    console.log('fetchUserSignUp', res);
+    console.log('fetchUserSignUp', res.data);
     const resOK = res.status === 200;
     if (resOK) {
       return res.data;
     }
-    throw new Error('fetchUserSignUp NOT OK');
+    // throw new Error('fetchUserSignUp NOT OK');
+    throw new Error(res.data.message);
   } catch (error) {
     return error as Error;
   }

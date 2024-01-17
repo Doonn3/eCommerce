@@ -23,13 +23,10 @@ onMounted(() => {
 
 const handlerInfo = (data: EmitType) => {
   if (data.checkStatus) {
-    // filter.add(data.name);
     filterModel.add(data.name);
   } else {
     filterModel.deletionsByName(data.name);
-    // filter.removeParam(data.name);
   }
-  console.log(filterModel.Model());
 };
 
 const check = () => {

@@ -10,8 +10,6 @@ const URL = `${apiUrl}/${project_key}`;
 export async function fetchQueryProductProjections(limit: number, offset: number) {
   const urlEndpoint = `${URL}/product-projections?limit=${limit}&offset=${offset}`;
 
-  console.log('Сделал Запрос на получения всех товарав');
-
   try {
     const res = await http.get<ProductProjectionPagedQueryResponseType>(urlEndpoint);
     const resOK = res.status === 200;
@@ -86,7 +84,6 @@ type QueryFilterSearch = {
 };
 export async function fetchProductProjectionQueryFilterSearch(query: QueryFilterSearch) {
   const url = `${URL}/product-projections/search?${createQueryFilterSearch(query)}`;
-  console.log(url);
   try {
     const res = await http.get<ProductProjectionPagedQueryResponseType>(url);
     const resOk = res.status === 200;

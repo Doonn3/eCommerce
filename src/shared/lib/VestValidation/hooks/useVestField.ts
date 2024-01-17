@@ -24,7 +24,6 @@ export function useVestField<V, F extends string, G extends string>(initValue: V
   const exevuteValidate = (_val: V) => {
     const suite = cb(_val);
     validateResult.value = suite;
-    console.log(suite);
   };
 
   const GetResult = computed(() => {

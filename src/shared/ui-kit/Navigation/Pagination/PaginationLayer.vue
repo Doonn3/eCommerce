@@ -21,7 +21,6 @@ const emit = defineEmits<{
         :key="index"
         @click="
           () => {
-            console.log(index);
             emit('click', index);
           }
         "
@@ -32,7 +31,6 @@ const emit = defineEmits<{
         class="btn join-item"
         @click="
           () => {
-            console.log(Math.floor(props.amount / 2));
             emit('click', Math.floor(props.amount / 2));
           }
         "
@@ -47,7 +45,6 @@ const emit = defineEmits<{
         :key="index"
         @click="
           () => {
-            console.log(index);
             emit('click', index);
           }
         "

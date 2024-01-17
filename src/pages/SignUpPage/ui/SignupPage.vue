@@ -1,43 +1,83 @@
 <script lang="ts" setup>
 import { StepLayer } from '@shared/ui-kit/Layout';
+
 import { MainLayer } from '../components/MainLayer';
-import AddressLayer from './AddressLayer/AddressLayer.vue';
-import FinishLayer from './FinishLayer/FinishLayer.vue';
+import { AddressLayer } from '../components/AddressLayer';
+import { FinishLayer } from '../components/FinishLayer';
+import { billingForm, shippingForm } from '../model/AddressModel';
+
+import { useSteps } from '@shared/lib/composables';
 import { useState } from '../model/statePage';
-import { billingForm, shippingForm } from './AddressLayer/model/AddressLayerModel';
+
+const stepsLayer = ['Data', 'Shipping Address', 'Billing Address', 'Finish'];
+
+const steps = useSteps({ step: 0, options: { min: 0, max: stepsLayer.length - 1 } });
 
 const state = useState();
-const isShow = (index: number) => {
-  return state.currStep === index;
+
+const isShow = (num: number) => {
+  return steps.State.value.step === num;
 };
 </script>
 <template>
-  <section class="sign-up m-auto h-[100vh] w-[100%] space-y-2 p-5 md:w-[70%]">
-    <step-layer
-      :steps="['Data', 'Shipping Address', 'Billing Address', 'Finish']"
-      :current-step="state.currStep"
-      class="w-full"
-      @event:step="(val) => state.next()"
+  <section class="sign-up">
+    <StepLayer
+      class="sign-up__step-layer"
+      :steps="stepsLayer"
+      :current-step="steps.State.value.step"
+      @event:step="(step) => steps.setStep(step.index)"
     />
-    <div class="h-full">
-      <MainLayer v-show="isShow(0)" />
-      <!-- @event:data="handlerMainLayerData" -->
+    <div class="sign-up__content">
+      <MainLayer
+        v-show="isShow(0)"
+        @emit-form="
+          (data) => {
+            state.setMainData(data);
+            steps.next();
+          }
+        "
+      />
 
       <AddressLayer
         v-show="isShow(1)"
         :form="shippingForm"
         @update:model="(data) => (shippingForm.state = data)"
-        @submit:model="() => state.setShippingAddress(shippingForm.state)"
+        @emit:back="steps.prev"
+        @emit:form="
+          (data) => {
+            state.setShippingAddress(data);
+            steps.next();
+          }
+        "
       />
-
+      <!--  @update:model="(data) => (billingForm.state = data)" -->
       <AddressLayer
         v-show="isShow(2)"
         :form="billingForm"
-        @update:model="(data) => (billingForm.state = data)"
-        @submit:model="() => state.setBillingAddress(billingForm.state)"
+        @emit:back="steps.prev"
+        @emit:form="
+          (data) => {
+            state.setBillingAddress(data);
+            steps.next();
+          }
+        "
       />
 
-      <FinishLayer v-show="isShow(3)" />
+      <FinishLayer v-if="isShow(3)" />
     </div>
   </section>
 </template>
+
+<style lang="scss" scoped>
+.sign-up {
+  @apply flex flex-col w-full p-5 md:w-[70%] m-auto h-full;
+
+  &__step-layer {
+    @apply h-[10%];
+  }
+
+  &__content {
+    @apply flex flex-col justify-center h-[90%];
+  }
+}
+</style>
