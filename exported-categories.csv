@@ -1,0 +1,8 @@
+id,key,externalId,parentId,orderHint,createdAt,lastModifiedAt,name.ru,description.ru,slug.ru,metaTitle.ru,metaDescription.ru,metaKeywords.ru,name.en,description.en,slug.en,metaTitle.en,metaDescription.en,metaKeywords.en
+7df25be4-548b-4e0e-9c12-a1dea899f74b,,Cookies_and_buns,,0.05,2023-11-11T03:36:49.419Z,2023-11-11T03:39:55.548Z,Печеньки и булки,,cookies-and-buns,,,,Cookies and buns,,cookies-and-buns,,,
+3c72e50d-8f1f-421e-b35f-fbc3ef000d39,processors,,PC Accessories,0.25,2023-09-27T22:21:55.116Z,2023-10-03T05:07:46.365Z,Процессоры,,processors,,,,Processors,,,,,
+362dc04a-7710-4633-a3f4-5e95dd592d50,Video-cards,,PC Accessories,0.25,2023-09-27T22:21:55.240Z,2023-10-03T05:07:59.893Z,Видеокарты,,video-cards,,,,Video cards,,,,,
+2deeacd9-04ee-4954-96ff-a9ad39c94147,,,Cookies_and_buns,0.05,2023-11-11T03:34:51.286Z,2023-11-11T03:39:30.040Z,Печеньки,,fresh-cookies,,,,Cookies,,fresh-cookies,,,
+8ce96d24-0f50-44a6-9124-49bc51a2e80a,PC-accessories,PC Accessories,,0.25,2023-09-27T22:21:55.176Z,2023-10-02T09:57:46.731Z,Комплектующие для ПК,,Pc-Accessories,,,,PC accessories,,,,,
+f7ebd376-65b9-4bc3-926b-c789e7f477d5,,,Cookies_and_buns,0.05,2023-11-11T03:30:55.149Z,2023-11-11T03:39:06.137Z,Булочки,,fresh-buns,,,,Buns,,fresh-buns,,,
+23b8705d-67f1-49cb-87fe-4b8d196fa471,motherboards,,PC Accessories,0.25,2023-09-27T22:21:55.348Z,2023-10-03T05:08:10.804Z,Материнские платы,,motherboards,,,,Motherboards,,,,,
