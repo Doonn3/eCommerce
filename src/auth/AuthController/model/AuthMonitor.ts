@@ -1,6 +1,6 @@
 import { type Ref, ref } from 'vue';
-import type { TokenType } from '../types/Types';
-import { revokingToken } from '../api/AuthFlowToken';
+import type { TokenType } from '../../types/Types';
+import { revokingToken } from '../../api/AuthFlowToken';
 
 export class AuthMonitor {
   private token: TokenType | null;
@@ -59,5 +59,3 @@ export class AuthMonitor {
     });
   }
 }
-
-export const auth = new AuthMonitor();

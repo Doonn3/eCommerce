@@ -21,7 +21,7 @@ export async function anonymousToken() {
 
   try {
     const res = await axiosInstance.post<TokenType>(url, {}, { headers });
-    const resOK = res.status === 200;
+    const resOK = res.status >= 200 && res.status < 300;
     if (resOK) {
       return res.data;
     }
@@ -37,7 +37,7 @@ export async function passwordToken(email: string, password: string) {
 
   try {
     const res = await axiosInstance.post<TokenType>(url, {}, { headers });
-    const resOK = res.status === 200;
+    const resOK = res.status >= 200 && res.status < 300;
     if (resOK) {
       return res.data;
     }
@@ -53,7 +53,7 @@ export async function refreshToken(refreshToken: string) {
 
   try {
     const res = await axiosInstance.post<TokenType>(url, {}, { headers });
-    const resOK = res.status === 200;
+    const resOK = res.status >= 200 && res.status < 300;
     if (resOK) {
       return res.data;
     }
@@ -69,7 +69,7 @@ export async function revokingToken(token: TokenType) {
 
   try {
     const res = await axiosInstance.post<boolean>(url, {}, { headers });
-    const resOK = res.status === 200;
+    const resOK = res.status >= 200 && res.status < 300;
     if (resOK) {
       return true;
     }
