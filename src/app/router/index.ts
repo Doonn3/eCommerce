@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { routes } from './routes';
-import { auth } from '@/auth/model/AuthMonitor';
+import { authController } from '@/auth';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -10,7 +10,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
   const requiresGuest = to.matched.some((record) => record.meta.requiresGuest);
-  const isLoggedIn = auth.IsAuthorized;
+  const isLoggedIn = authController.AuthMonitor.IsAuthorized;
 
   if (requiresAuth && !isLoggedIn.value) {
     next(from.path); // если роут требует авторизации и пользователь не авторизован, перенаправляем на страницу /catalog
