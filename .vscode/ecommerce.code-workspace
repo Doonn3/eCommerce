@@ -32,7 +32,7 @@
             "editor.codeActionsOnSave": {
                 "source.fixAll": true
             },
-            "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+            "editor.defaultFormatter": "esbenp.prettier-vscode",
         },
         "tailwindCSS.classAttributes": ["class", "className", "ngClass", ".*Styles", ".*Classes"],
         "scss.lint.unknownAtRules": "ignore",
