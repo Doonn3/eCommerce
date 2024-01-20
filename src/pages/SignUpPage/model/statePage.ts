@@ -84,16 +84,6 @@ export const useState = defineStore(NAME_SPACE, () => {
     if (billingAddress !== null) {
       addresses.push(unwrapAddress(billingAddress));
     }
-    console.log({
-      firstName: name,
-      lastName: surname,
-      email: email,
-      password: password,
-      dateOfBirth: dateOfBirth,
-      addresses,
-      defaultShippingAddress: shippingAddress?.isDefault ? 0 : undefined,
-      defaultBillingAddress: billingAddress?.isDefault ? 1 : undefined
-    });
 
     customer
       .SignUp({
@@ -101,12 +91,14 @@ export const useState = defineStore(NAME_SPACE, () => {
         lastName: surname,
         email: email,
         password: password,
-        dateOfBirth: dateOfBirth
-        // addresses,
-        // defaultShippingAddress: shippingAddress?.isDefault ? 0 : undefined,
-        // defaultBillingAddress: billingAddress?.isDefault ? 1 : undefined
+        dateOfBirth: dateOfBirth,
+        addresses,
+        defaultShippingAddress: shippingAddress?.isDefault ? 0 : undefined,
+        defaultBillingAddress: billingAddress?.isDefault ? 1 : undefined
       })
-      .then(() => router.push({ name: 'catalog' }));
+      .then((result) => {
+        if (!result.isError) router.push({ name: 'catalog' });
+      });
   };
 
   return {
