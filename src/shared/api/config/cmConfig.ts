@@ -1,15 +1,18 @@
 const env = import.meta.env;
 
 const getRightUrl = (url: string) => {
-  if (url === undefined) return '';
-  return url[url.length - 1] === '/' ? url.slice(0, -1) : url;
+  if (url === undefined) {
+    throw new Error('Url undefined');
+  }
+
+  return url.endsWith('/') ? url.slice(0, -1) : url;
 };
 
 const project_key = env.VITE_CTP_PROJECT_KEY;
 const client_id = env.VITE_CTP_CLIENT_ID;
 const secret = env.VITE_CTP_CLIENT_SECRET;
-const apiUrl = getRightUrl(env.VITE_CTP_API_URL);
-const authUrl = getRightUrl(env.VITE_CTP_AUTH_URL);
+const apiUrl = getRightUrl(env.VITE_CTP_API_HOST);
+const authUrl = getRightUrl(env.VITE_CTP_AUTH_HOST);
 
 const scope = {
   create_anonymous_token: `create_anonymous_token:${project_key}`,
