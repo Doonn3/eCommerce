@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { LogoButton, SimpleButton } from '@shared/ui-kit/Buttons';
-import { auth } from '@/auth/model/AuthMonitor';
+import { authController } from '@/auth';
 import { SearchProduct } from '@features/Product/SearchProduct';
 
 import { UserWidget } from '@widgets/UserWidget';
@@ -34,9 +34,9 @@ import MobileNav from '../components/MobileNav.vue';
       </div>
 
       <div class="navbar-end">
-        <UserWidget v-if="auth.IsAuthorized.value" />
+        <UserWidget v-if="authController.AuthMonitor.IsAuthorized.value" />
 
-        <div v-if="!auth.IsAuthorized.value">
+        <div v-if="!authController.AuthMonitor.IsAuthorized.value">
           <router-link to="/login">
             <SimpleButton
               name="Login"
