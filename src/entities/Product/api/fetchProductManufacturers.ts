@@ -1,6 +1,6 @@
 import { config } from '@shared/api/config/cmConfig';
 import { type FacetResponse } from '../types/TermFacetResultType';
-import { http } from '@/auth/model/interceptors';
+import { http } from '@/auth';
 
 const END_POINT = `${config.apiUrl}/${config.project_key}/product-projections`;
 
@@ -11,8 +11,8 @@ export async function fetchProductManufacturers(categoriID: string) {
 
   try {
     const res = await http.get<FacetResponse>(url);
-    const resOk = res.status === 200;
-    if (resOk) {
+    const resOK = res.status >= 200 && res.status < 300;
+    if (resOK) {
       return res.data;
     }
     throw new Error();

@@ -1,7 +1,7 @@
 import { config } from '@/shared/api/config/cmConfig';
 
 import { type ProductProjectionPagedQueryResponseType, type ProductProjectionType } from '../types/ProductType';
-import { http } from '@/auth/model/interceptors';
+import { http } from '@/auth';
 
 const { apiUrl, project_key } = config;
 
@@ -12,7 +12,7 @@ export async function fetchQueryProductProjections(limit: number, offset: number
 
   try {
     const res = await http.get<ProductProjectionPagedQueryResponseType>(urlEndpoint);
-    const resOK = res.status === 200;
+    const resOK = res.status >= 200 && res.status < 300;
     if (resOK) {
       const result = res.data;
       return result;
@@ -28,7 +28,7 @@ export async function fetchGetProductProjectionByID(id: string) {
 
   try {
     const res = await http.get<ProductProjectionType>(url);
-    const resOK = res.status === 200;
+    const resOK = res.status >= 200 && res.status < 300;
     if (resOK) {
       const result = res.data;
       return result;
@@ -44,7 +44,7 @@ export async function fetchQueryProductProjectionsByCategory(id: string) {
 
   try {
     const res = await http.get<ProductProjectionPagedQueryResponseType>(urlEndpoint);
-    const resOK = res.status === 200;
+    const resOK = res.status >= 200 && res.status < 300;
     if (resOK) {
       const result = res.data;
       return result;
@@ -60,8 +60,8 @@ export async function fetchProductProjectionSearch(language: string, text: strin
 
   try {
     const res = await http.get<ProductProjectionPagedQueryResponseType>(url);
-    const resOk = res.status === 200;
-    if (resOk) {
+    const resOK = res.status >= 200 && res.status < 300;
+    if (resOK) {
       return res.data;
     }
 
@@ -86,8 +86,8 @@ export async function fetchProductProjectionQueryFilterSearch(query: QueryFilter
   const url = `${URL}/product-projections/search?${createQueryFilterSearch(query)}`;
   try {
     const res = await http.get<ProductProjectionPagedQueryResponseType>(url);
-    const resOk = res.status === 200;
-    if (resOk) {
+    const resOK = res.status >= 200 && res.status < 300;
+    if (resOK) {
       return res.data;
     }
     throw new Error('fetchProductProjectionQueryFilterSearch Not Ok');
@@ -112,28 +112,3 @@ function createQueryFilterSearch(query: QueryFilterSearch) {
   const queryStr = `filter.query=variants.attributes.manufacturer:${result}`;
   return queryCategoriesId + '&' + queryStr;
 }
-
-// function createQueryFilterSearch(query: QueryFilterSearch) {
-//   const arr: string[] = [];
-
-//   if (query.categoryId !== undefined) {
-//     arr.push(`filter.query=categories.id:subtree${query.categoryId}`);
-//   }
-
-//   if (query.priceCurrency !== undefined) {
-//     arr.push(`filter.query=variants.price.currencyCode:"${query.priceCurrency}"`);
-//   }
-
-//   if (query.price !== undefined) {
-//     arr.push(`filter.query=variants.price.centAmount:range(${query.price.min} to ${query.price.max})`);
-//   }
-
-//   for (let i = 1; i < arr.length; i += 1) {
-//     const elem = arr[i];
-//     arr[i] = `&${elem}`;
-//   }
-
-//   const result = arr.join('');
-
-//   return result;
-// }
