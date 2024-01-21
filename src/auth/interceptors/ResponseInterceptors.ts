@@ -10,9 +10,10 @@ export async function ResponseInterceptor(response: AxiosResponse) {
     if (!(newToken instanceof Error)) {
       console.log('ТОКЕН ОБНОВЛЕН!!');
       // Повторный запрос с новым токеном
-      response.config.headers.authorization = `Bearer ${newToken.access_token}`;
+      response.config.headers.Authorization = `Bearer ${newToken.access_token}`;
       const repeatResponse = await axios(response.config);
       console.log('ПОВТОРЕНИЯ ЗАПРОСА ПОСЛЕ ОБНОВЛЕНИЯ ТОКЕН!!');
+      console.log(repeatResponse);
       return repeatResponse;
     }
   }

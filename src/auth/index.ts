@@ -4,6 +4,14 @@ import { ResponseInterceptor, ErrorResponceInterceptor } from './interceptors/Re
 
 export { authController } from './AuthController/AuthController';
 
+declare module 'axios' {
+  export interface AxiosRequestConfig {
+    metadata?: {
+      userLogn: boolean;
+    };
+  }
+}
+
 export const http = axios.create({
   validateStatus: function (status) {
     return status < 500; // Разрешить, если код состояния меньше 500

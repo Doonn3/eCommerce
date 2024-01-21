@@ -13,7 +13,7 @@ export class RefreshCommand extends CommandHandler {
       return new Error(`Ошибка От Сервера, <<RefreshCommand>>, <<${newToken.message}>>`);
     }
 
-    this.authMonitor.SetToken(token);
+    this.authMonitor.SetToken(newToken);
 
     return token;
   }

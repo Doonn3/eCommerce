@@ -1,6 +1,6 @@
 import { AnonimusCommand } from './command/AnonimusCommand';
 import { RefreshCommand } from './command/RefreshCommand';
-import { RevokingCommand } from './command/RevokingCommand';
+
 import { PasswordFlowCommand } from './command/PasswordFlowCommand';
 import { AuthMonitor } from './model/AuthMonitor';
 
@@ -16,8 +16,6 @@ export class Auth {
   public AnonTokenCommand = new AnonimusCommand(this.auth);
 
   public RefreshTokenCommand = new RefreshCommand(this.auth);
-
-  public RevokeTokenCommand = new RevokingCommand(this.auth);
 
   public PasswordFlowCommand = new PasswordFlowCommand(this.auth);
   public LogoutFlowCommand = new LogoutFlowCommand(this.auth);
