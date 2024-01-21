@@ -1,23 +1,9 @@
 <script lang="ts" setup>
-import { onMounted } from 'vue';
-import { useRoute } from 'vue-router';
-
 import { PaginationLayer } from '@shared/ui-kit/Navigation';
 import { ProductList, useProductStore } from '@entities/Product';
 import { ProductCard } from '@features/Product/ProductCard';
 
-const route = useRoute();
-
 const productStore = useProductStore();
-
-onMounted(() => {
-  const { id } = route.params;
-  if (id.length < 1) {
-    productStore.requestGetProducts();
-  } else {
-    productStore.requestGetProductsByCategory(id as string);
-  }
-});
 </script>
 
 <template>

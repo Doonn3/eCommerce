@@ -7,7 +7,9 @@ import { create, only } from 'vest';
 import { LinkText } from '@shared/ui-kit/Navigation';
 import { useVestForm, ruls } from '@shared/lib/VestValidation';
 import { useCustomer } from '@entities/Customer';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const userStore = useCustomer();
 
 type FormType = {
@@ -31,7 +33,14 @@ const onSubmitForm = async () => {
   if (form.Valid()) {
     isSubmit.value = true;
     const { email, password } = form.state;
-    userStore.SignIn(email, password).finally(() => (isSubmit.value = false));
+    userStore
+      .SignIn(email, password)
+      .then((data) => {
+        if (data.isLogin) {
+          router.push({ name: 'catalog' });
+        }
+      })
+      .finally(() => (isSubmit.value = false));
   }
 };
 

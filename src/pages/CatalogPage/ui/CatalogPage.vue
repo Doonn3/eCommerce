@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import { useProductStore } from '@entities/Product';
-import { useProductFilterStore } from '@entities/Product';
+import { useProductFilterStore, useProductStore } from '@entities/Product';
 
 import { HeaderWidget } from '@widgets/HeaderWidget';
 import { CatalogMenuWidget } from '@widgets/Product/CatalogMenuWidget';
@@ -8,9 +7,26 @@ import { CatalogMenuWidget } from '@widgets/Product/CatalogMenuWidget';
 import CatalogLayout from '../Layouts/CatalogLayout.vue';
 import AsideFilter from '../components/AsideFilter.vue';
 import ProductsLayout from '../components/ProductsLayout.vue';
+import { useRoute } from 'vue-router';
+import { onMounted } from 'vue';
 
+const route = useRoute();
 const productStore = useProductStore();
 const productFilterStore = useProductFilterStore();
+
+const fetchProducts = () => {
+  const { id } = route.params;
+
+  if (id === undefined || id.length < 1) {
+    productStore.requestGetProducts();
+  } else {
+    productStore.requestGetProductsByCategory(id as string);
+  }
+};
+
+onMounted(() => {
+  fetchProducts();
+});
 </script>
 
 <template>
