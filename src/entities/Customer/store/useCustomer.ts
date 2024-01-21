@@ -58,6 +58,7 @@ export const useCustomer = defineStore(NAME_SPACE, () => {
     const res = await fetchUserSignin({ email, password });
 
     let isError = false;
+    let isLogin = false;
 
     if (res instanceof Error) {
       isError = true;
@@ -66,7 +67,6 @@ export const useCustomer = defineStore(NAME_SPACE, () => {
       user.value = res;
       userName.value = res.customer.firstName ?? null;
       ls.set('user-name', userName.value);
-      alert.AddMessage({ status: 'success', message: 'Success Sign In' });
 
       const result = await authController.PasswordFlowCommand.execute(email, password);
 
@@ -74,12 +74,14 @@ export const useCustomer = defineStore(NAME_SPACE, () => {
         isError = true;
         alert.AddMessage({ status: 'error', message: result.message });
       } else {
-        router.push({ name: 'catalog' });
+        isLogin = true;
+        alert.AddMessage({ status: 'success', message: 'Success Sign In' });
       }
     }
 
     isLoadingRef.value = false;
-    return { data: res, isError, isLoading: isLoadingRef.value };
+
+    return { data: res, isError, isLoading: isLoadingRef.value, isLogin };
   }
 
   async function SignOut() {

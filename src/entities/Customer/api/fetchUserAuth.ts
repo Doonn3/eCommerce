@@ -15,15 +15,17 @@ export async function fetchUserSignin(user: MyCustomerSigninType) {
   const url = `${apiUrl}/${project_key}/me/login`;
 
   try {
-    const res = await http.post<ResponseMessage | CustomerSignInResultType>(url, user, {
-      headers: { 'Content-Type': 'application/json' }
+    const res = await http.post<CustomerSignInResultType>(url, user, {
+      headers: { 'Content-Type': 'application/json' },
+      metadata: { userLogn: true }
     });
     const resOK = res.status >= 200 && res.status < 300;
     if (resOK) {
       return res.data;
     }
 
-    throw new Error((res.data as ResponseMessage).message);
+    const msg = (res.data as unknown as ResponseMessage).message;
+    throw new Error(msg);
   } catch (error) {
     return error as Error;
   }
@@ -32,8 +34,9 @@ export async function fetchUserSignin(user: MyCustomerSigninType) {
 export async function fetchUserSignUp(user: MyCustomerDraftType) {
   const url = `${apiUrl}/${project_key}/me/signup`;
   try {
-    const res = await http.post<ResponseMessage | CustomerSignInResultType>(url, user, {
-      headers: { 'Content-Type': 'application/json' }
+    const res = await http.post<CustomerSignInResultType>(url, user, {
+      headers: { 'Content-Type': 'application/json' },
+      metadata: { userLogn: true }
     });
 
     const resOK = res.status >= 200 && res.status < 300;
@@ -41,7 +44,9 @@ export async function fetchUserSignUp(user: MyCustomerDraftType) {
       return res.data;
     }
 
-    throw new Error(`Что то пошло не так не получилось зарегестрироватся! >> ${(res.data as ResponseMessage).message} >> ${res.status}`);
+    const msg = (res.data as unknown as ResponseMessage).message;
+
+    throw new Error(`Что то пошло не так не получилось зарегестрироватся! >> ${msg} >> ${res.status}`);
   } catch (error) {
     return error as Error;
   }

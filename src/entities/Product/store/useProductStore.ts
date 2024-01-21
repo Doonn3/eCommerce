@@ -83,11 +83,12 @@ export const useProductStore = defineStore(NAME_SPACE, () => {
   async function requestGetProducts(offset = 0, limit = 10) {
     if (offset <= 0) offset = 0;
     isLoading.value = true;
-    const products = await fetchQueryProductProjections(limit, offset * limit).finally(() => (isLoading.value = false));
+    const products = await fetchQueryProductProjections(limit, offset * limit);
 
     if (products instanceof Error) return;
 
     data.value = products;
+    isLoading.value = false;
   }
 
   //offset = 0, limit = 10
