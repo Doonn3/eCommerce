@@ -24,7 +24,6 @@ export class AnonimusCommand extends CommandHandler {
         token = result;
         this.authMonitor.SetToken(token);
         this.anonTokenPromise = null;
-        console.log(token);
       }
     }
 
