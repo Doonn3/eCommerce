@@ -20,21 +20,6 @@ export const useState = defineStore(NAME_SPACE, () => {
 
   let billingAddress: AddressType | null = null;
 
-  const testMainData: TFormFields = {
-    name: 'Kolan',
-    surname: 'Yak',
-    email: 'pastux@pastux.com',
-    password: 'FJfngjru1230FJnjvf',
-    dateOfBirth: '10/12/2000'
-  };
-
-  const testShipBillAddress: AddressType = {
-    country: 'Russia',
-    city: 'Voronesh',
-    street: 'Teplak',
-    isDefault: false
-  };
-
   const setMainData = (_data: TFormFields) => {
     mainData = _data;
   };
@@ -111,9 +96,6 @@ export const useState = defineStore(NAME_SPACE, () => {
 
     getShippingAddress,
 
-    getBillingAddress,
-
-    testMainData,
-    testShipBillAddress
+    getBillingAddress
   };
 });
